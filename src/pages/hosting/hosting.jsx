@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import cursor1 from '../../static/cursor1.png';
 
 export default function Hosting(){
     useEffect(() => {
@@ -87,13 +88,31 @@ export default function Hosting(){
             </div>
             <div className='b22'>
                 <span className='b23'>
-                    Use gitHub to deploy your projects
+                    Use git to deploy your projects
                 </span>
                 <div className='b24'>
-                    > git remote add UniJS_Repository https://github.com/my-organisation/bot-repo.git
-                    > git fetch
-                    > git push bot refs/heads/master:refs/heads/main --set-upstream
+                    <span className='b25'>
+                        > git remote add UniJS_Repository https://github.com/my-organisation/bot-repo.git <br/>
+                        > git fetch<br/>
+                        > git push bot refs/heads/master:refs/heads/main --set-upstream
+                    </span>
                 </div>
+            </div>
+            <div className='b26'>
+                <span className='b27'>
+                    Use app right now
+                </span>
+                <div className='b28'>
+                    <a href='/host-app/index'> App </a>
+                </div>
+            </div>
+            <footer className='b29'>
+                <a className='b31' href='/'>
+                    To main page
+                </a>
+            </footer>
+            <div className='b30'>
+                OOO "MOLDOVANE"
             </div>
         </>
     )
