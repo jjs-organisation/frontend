@@ -1,13 +1,29 @@
-export default function Header() {
+import {useEffect} from "react";
+
+export default function Header({ inner }) {
+    useEffect(() => {
+        window.onwheel = e => {
+            if(e.deltaY >= 0){
+                document.getElementById('header-element')
+                    .classList.add('header-animation-1-elem')
+                document.getElementById('header-element')
+                    .classList.remove('header-animation-2-elem')
+            } else {
+                // Wheel Up
+                document.getElementById('header-element')
+                    .classList.add('header-animation-2-elem')
+                document.getElementById('header-element')
+                    .classList.remove('header-animation-1-elem')
+            }
+        }
+    })
     return(
-        <header>
+        <header id='header-element'>
             <div className="a1">
-                UniJS
+                <a href='/'>UniJS</a>
             </div>
             <div className="tl-1">
-                <a href="/hosting">hosting</a>
-                <a href="#pricing">pricing</a>
-                <a href="#contacts">contacts</a>
+                { inner }
             </div>
         </header>
     )

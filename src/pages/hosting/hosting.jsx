@@ -41,7 +41,7 @@ export default function Hosting(){
                 </span>
                 <input type='button' value='About' className='b4'/>
             </div>
-            <div className='b5'>
+            <div className='b5' id='b5'>
                 <span className='b2'>  About </span>
                 <div className='b6'>
                     <div className='b7'>
@@ -56,7 +56,7 @@ export default function Hosting(){
                 </div>
             </div>
             <div className='b11'>
-                <div className='b12'>
+                <div className='b12' id='b12'>
                     <span className='b13'> NodeJS API >_</span>
                     <div className='b18'>
                         <div className='b14' id='el-1'>

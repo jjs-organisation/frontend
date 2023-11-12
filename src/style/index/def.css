@@ -33,6 +33,7 @@ header{
     padding-left: 150px;
     padding-right: 150px;
     text-transform: uppercase;
+    transition: 0.5s;
     background-color:white;
     position: fixed;
     top: 0;
@@ -688,8 +689,28 @@ footer{
 a{
     color: black;
 }
+footer{
+    border-radius: 20px 20px 0px 0px;
+}
 .tb-1:hover{
     color: black !important;
+}
+.header-animation-1-elem{
+    color: transparent;
+    height: 0;
+}
+.header-animation-1-elem a{
+    color: transparent;
+}
+.header-animation-2-elem{
+    color: black;
+    height: 50px;
+}
+.header-animation-2-elem a{
+    color: black;
+}
+.header-animation-1-elem a, .header-animation-2-elem a{
+    transition: 0.4s;
 }
 @media screen and (max-width: 900px){
     header{
@@ -700,6 +721,9 @@ a{
     }
     .a1{
         font-size: 30px;
+    }
+    .header-animation-2-elem{
+        height: 55px;
     }
     main{
         width: 375px;

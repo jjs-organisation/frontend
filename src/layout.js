@@ -1,9 +1,9 @@
 import cursor1 from './static/cursor1.png'
 import Header from "./elements/header";
-export default function Layout({ inner }) {
+export default function Layout({ inner, Head }) {
     return(
         <>
-            <Header />
+            <Header inner={ Head } />
             <div className="a2">
                 <main>
                     { inner }
