@@ -1,6 +1,7 @@
 import Popup from "./app-pages/popup";
 import {PopupLogIn, PopupPayment, PopupSignUp} from "./elements/popup-elements";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
+import {createUser, stringify} from "../../server-api/using";
 
 export default function HeaderHostApp({ amount, name, session}){
     const LoggedIn = () => (
@@ -47,7 +48,7 @@ export default function HeaderHostApp({ amount, name, session}){
                 <PopupPayment id={'popup1'}/>
             }/>
             <Popup id={'popup2'} popupPart={
-                <PopupSignUp id={'popup2'}/>
+                <PopupSignUp id={'popup2'} />
             }/>
             <Popup id={'popup3'} popupPart={
                 <PopupLogIn id={'popup3'}/>

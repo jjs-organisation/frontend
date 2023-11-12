@@ -1,58 +1,9 @@
 import { Outlet } from 'react-router';
-import {PopupLogIn, PopupUploadFiles} from "../elements/popup-elements";
+import {PopupCreateProject, PopupLogIn, PopupUploadFiles} from "../elements/popup-elements";
 import Popup from "./popup";
-export default function IndexHostApp({ state }){
-
-    const stateBox = () => {
-        switch (state) {
-            case 'l': {
-                document.getElementById('c-8').classList.remove('c-8-error')
-                document.getElementById('c-8').classList.remove('c-8-stopped')
-                document.getElementById('c-8').classList.remove('c-8-running')
-                document.getElementById('c-8').classList.add('c-8-launch')
-                document.getElementById('c-8').innerText = 'запуск..'
-            }
-            case 'r': {
-                document.getElementById('c-8').classList.remove('c-8-error')
-                document.getElementById('c-8').classList.remove('c-8-stopped')
-                document.getElementById('c-8').classList.add('c-8-running')
-                document.getElementById('c-8').classList.remove('c-8-launch')
-                document.getElementById('c-8').innerText = 'запущено'
-            }
-            case 's': {
-                document.getElementById('c-8').classList.remove('c-8-error')
-                document.getElementById('c-8').classList.add('c-8-stopped')
-                document.getElementById('c-8').classList.remove('c-8-running')
-                document.getElementById('c-8').classList.remove('c-8-launch')
-                document.getElementById('c-8').innerText = 'остановлено'
-            }
-            case 'e': {
-                document.getElementById('c-8').classList.add('c-8-error')
-                document.getElementById('c-8').classList.remove('c-8-stopped')
-                document.getElementById('c-8').classList.remove('c-8-running')
-                document.getElementById('c-8').classList.remove('c-8-launch')
-                document.getElementById('c-8').innerText = 'ошибка'
-            }
-            default:{
-                document.getElementById('c-8').classList.remove('c-8-error')
-                document.getElementById('c-8').classList.add('c-8-stopped')
-                document.getElementById('c-8').classList.remove('c-8-running')
-                document.getElementById('c-8').classList.remove('c-8-launch')
-                document.getElementById('c-8').innerText = 'остановлено'
-            }
-        }
-    }
-
-    const PopupShowHide = (id) => {
-        if (document.getElementById(id).classList.contains('popup-settings-show')){
-            document.getElementById(id).classList.remove('popup-settings-show')
-            document.getElementById(id).classList.add('popup-settings-hide')
-        }else {
-            document.getElementById(id).classList.remove('popup-settings-hide')
-            document.getElementById(id).classList.add('popup-settings-show')
-        }
-    }
-
+import {createProject, getCookie, PopupShowHide} from "../../../server-api/using";
+import {ProjectsRender} from "../elements/projects-render";
+export default function IndexHostApp(){
     return(
         <>
             <div className='ha-index'>
@@ -66,7 +17,7 @@ export default function IndexHostApp({ state }){
                         <div className='c-12'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="50" fill="currentColor"
                                  className="bi bi-filetype-jsx" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
+                                <path fillRule="evenodd"
                                       d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.075 14.841a1.13 1.13 0 0 0 .401.823c.13.108.288.192.478.252.19.061.411.091.665.091.338 0 .624-.053.858-.158.237-.105.416-.252.54-.44a1.17 1.17 0 0 0 .187-.656c0-.224-.045-.41-.135-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.565-.21l-.621-.144a.97.97 0 0 1-.405-.176.37.37 0 0 1-.143-.299c0-.156.061-.284.184-.384.125-.101.296-.152.513-.152.143 0 .266.023.37.068a.624.624 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.199-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.552.05-.776.15-.225.099-.4.24-.528.421-.127.182-.19.395-.19.639 0 .201.04.376.123.524.082.149.199.27.351.367.153.095.332.167.54.213l.618.144c.207.049.36.113.462.193a.387.387 0 0 1 .153.326.512.512 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.224-.013-.32-.04a.837.837 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM0 14.791c0 .165.027.32.082.466.055.147.136.277.243.39.11.113.245.202.407.267.164.062.354.093.569.093.42 0 .748-.115.984-.346.238-.23.358-.565.358-1.004v-2.725h-.791v2.745c0 .201-.046.357-.138.466-.092.11-.233.164-.422.164a.499.499 0 0 1-.454-.246.576.576 0 0 1-.073-.27H0Zm8.907-2.859H9.8l-1.274 2.007L9.78 15.93h-.908l-.85-1.415h-.035l-.853 1.415h-.861l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Z"/>
                             </svg>
                             <span className='c-13'> NodeJS + React </span>
@@ -74,7 +25,7 @@ export default function IndexHostApp({ state }){
                         <div className='c-12' onClick={() => console.log('sad')}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="50" fill="currentColor"
                                  className="bi bi-filetype-html" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
+                                <path fillRule="evenodd"
                                       d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5Zm-9.736 7.35v3.999h-.791v-1.714H1.79v1.714H1V11.85h.791v1.626h1.682V11.85h.79Zm2.251.662v3.337h-.794v-3.337H4.588v-.662h3.064v.662H6.515Zm2.176 3.337v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596H9.93L8.79 11.85h-.805v3.999h.706Zm4.71-.674h1.696v.674H12.61V11.85h.79v3.325Z"/>
                             </svg>
                             <span className='c-13'> HTML web </span>
@@ -95,26 +46,32 @@ export default function IndexHostApp({ state }){
                 <div className='c-2'>
                     <div className='c-3'>
                         <span className='c-5'>Host new project</span>
-                        <input type='button' className='c-6' value='Deploy'/>
+                        <input type='button' className='c-6' value='Deploy'
+                            onClick={() => PopupShowHide('popup5')
+                        }/>
                         <input type='button' className='c-6' value='Обновить'/>
                     </div>
                     <div className='c-4'>
-                        <div className='c-7'>
-                            <div className='c-8 c-8-stopped' id='c-8'>
-                                {() => stateBox()}
-                            </div>
-                            <span className='c-9'>
-                            PROJECT_NAME
-                        </span>
-                            <input type='button' className='c-10' value='Upload files'
-                                   onClick={() => PopupShowHide('popup4')} />
-                        </div>
+                        { getCookie('user-id') ? <></> : <ProjectsRender /> }
                     </div>
                 </div>
             </div>
             <Popup id={'popup4'} popupPart={
                 <PopupUploadFiles id={'popup4'}/>
             }/>
+            <Popup id={'popup5'} popupPart={
+                <PopupCreateProject id={'popup5'}/>
+            }/>
         </>
     )
 }
+//<div className='c-7'>
+//                             <div className='c-8 c-8-stopped' id='c-8'>
+//                                 {() => stateBox()}
+//                             </div>
+//                             <span className='c-9'>
+//                             PROJECT_NAME
+//                         </span>
+//                             <input type='button' className='c-10' value='Upload files'
+//                                    onClick={() => PopupShowHide('popup4')} />
+//                         </div>

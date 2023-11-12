@@ -676,3 +676,53 @@ footer{
 .c-15{
     width: -webkit-fill-available;
 }
+a{
+    color: black;
+}
+
+@media screen and (max-width: 900px){
+    header{
+        flex-direction: column;
+        height: 55px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+    .a1{
+        font-size: 30px;
+    }
+    main{
+        width: 375px;
+        height: 3000px;
+        padding-top: 100px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .a4{
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .a7{
+        flex-direction: column-reverse;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .a5, .a6, .a8, .a9{
+        max-width: 340px !important;
+    }
+    .a11{
+        flex-direction: column;
+        height: 1250px;
+    }
+    .a17{
+        flex-direction: column;
+    }
+    .a9, .a5{
+        font-size: 24px;
+    }
+    .a14{
+        padding-top: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
