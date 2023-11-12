@@ -7,15 +7,15 @@ export default function Index() {
                         UniJS
                     </div>
                     <div className="a6">
-
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                 </div>
                 <div className="a7">
                     <div className="a8">
-
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                     <div className="a9">
-                        >_Telegram Bot IDE
+                        >_Web hosting for <br/>your projects
                     </div>
                 </div>
             </section>
@@ -67,15 +67,18 @@ export default function Index() {
 
             <section className="a17">
                 <div className="a18">
-                    <div>
-                        latest version
+                    <div className="a22">
+                        Simple hosting for your projects
                     </div>
                     <div className="a19">
-                        <input type="button" className="b" value="DOWNLOAD"/>
+                        <input type="button" className="b tb-1" style={{ color: 'white' }} value="To hosting"/>
                     </div>
                 </div>
                 <div className="a20">
-                    change log
+                    change log<br />
+                    <span className='a23'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </span>
                 </div>
             </section>
             <footer id="contacts">

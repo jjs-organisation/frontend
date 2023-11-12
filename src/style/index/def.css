@@ -661,6 +661,15 @@ footer{
     margin-left: 20px;
     color: white;
 }
+.a6{
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 26px;
+}
+.a8{
+    padding-top: 20px;
+    font-size: 26px;
+}
 .c-14{
     background-color: #000000;
     width: -webkit-fill-available;
@@ -679,7 +688,9 @@ footer{
 a{
     color: black;
 }
-
+.tb-1:hover{
+    color: black !important;
+}
 @media screen and (max-width: 900px){
     header{
         flex-direction: column;
@@ -724,5 +735,19 @@ a{
         padding-top: 0px;
         padding-left: 20px;
         padding-right: 20px;
+    }
+    .a22, .a20{
+        font-size: 24px;
+    }
+    .a6{
+        padding-top: 25px;
+        font-size: 18px;
+    }
+    .a8{
+        padding-top: 25px;
+        font-size: 18px;
+    }
+    .a23{
+        font-size: 18px;
     }
 }
