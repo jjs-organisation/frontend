@@ -1,8 +1,23 @@
-import {PopupShowHide} from "../../../server-api/using";
+import {getProjects, PopupShowHide} from "../../../server-api/using";
+import {useEffect, useState} from "react";
 
-export const ProjectsRender = ({ userId , state }) => {
-  let data = [];
+export function ProjectsRender () {
+    const [data, setData] = useState([]);
 
+    useEffect(() => {
+        const dataFetch = async () => {
+            await getProjects(function (res) {
+                if (res)
+                    setData(res)
+                console.log(res)
+            })
+        };
+
+        dataFetch();
+    }, []);
+
+
+    let state
     const stateBox = () => {
         switch (state) {
             case 'l': {
@@ -33,7 +48,7 @@ export const ProjectsRender = ({ userId , state }) => {
                 document.getElementById('c-8').classList.remove('c-8-launch')
                 document.getElementById('c-8').innerText = 'ошибка'
             }
-            default:{
+            default: {
                 document.getElementById('c-8').classList.remove('c-8-error')
                 document.getElementById('c-8').classList.add('c-8-stopped')
                 document.getElementById('c-8').classList.remove('c-8-running')
@@ -43,16 +58,32 @@ export const ProjectsRender = ({ userId , state }) => {
         }
     }
 
-  return data.map((item, i) => (
-      <div className='c-7' key={item.name + '-' + i}>
-          <div className='c-8 c-8-stopped' id='c-8'>
-              {() => stateBox()}
-          </div>
-          <span className='c-9'>
-              PROJECT_NAME
-          </span>
-          <input type='button' className='c-10' value='Upload files'
-                 onClick={() => PopupShowHide('popup4')} />
-      </div>
-  ))
+    const ProjectsList = () => data.map((item, i) => (
+        <div className='c-7' key={item.name + '-' + i + '-' + item.id}>
+            <div className='c-16'>
+                <div className='c-8 c-8-stopped' id='c-8'>
+                    {() => stateBox()}
+                </div>
+                <span className='c-9'>
+                {item.name}
+            </span>
+            </div>
+            <div className='c-17'>
+                <input type='button' className='c-10' value='Upload files' projectId={item.id}
+                       onClick={
+                           () => {
+                                PopupShowHide('popup4')
+                                document.cookie=`project-id=${item.id}`
+                           }}/>
+                <input type='button' className='c-10' value='Start project' 
+                       onClick={() => console.log('start')}/> { /* callFunction(item.id) */ }
+                <input type='button' className='c-10' value='Delete project'
+                       onClick={() => console.log('delete')}/>
+            </div>
+        </div>
+    ))
+
+    return (
+        <ProjectsList />
+    )
 }

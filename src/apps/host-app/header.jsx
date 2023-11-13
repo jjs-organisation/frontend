@@ -1,13 +1,33 @@
 import Popup from "./app-pages/popup";
 import {PopupLogIn, PopupPayment, PopupSignUp} from "./elements/popup-elements";
-import {useEffect, useRef} from "react";
-import {createUser, stringify} from "../../server-api/using";
+import {useEffect, useRef, useState} from "react";
+import {createUser, deleteCookie, getCookie, getProjects, getUserData, stringify} from "../../server-api/using";
 
-export default function HeaderHostApp({ amount, name, session}){
+export default function HeaderHostApp() {
+    const [UserName, setUserName] = useState([]);
+
+    useEffect(() => {
+        const dataFetch = async () => {
+            await getUserData(function (res) {
+                if (res){
+                    setUserName(JSON.parse(res.r)[0].name);
+                }
+                console.log(res)
+            })
+        };
+        if (!getCookie('user-id'))
+            console.log('not in session')
+        else
+            dataFetch();
+    }, []);
+
     const LoggedIn = () => (
         <>
-            <span className='h-7'> UserName </span>
-            <a> Log out </a>
+            <span className='h-7'> { UserName ? UserName : undefined } </span>
+            <a onClick={() => {
+                deleteCookie('user-id')
+                window.location.reload();
+            }}> Log out </a>
         </>
     )
     const UnLoggedIn = () => (
@@ -40,7 +60,7 @@ export default function HeaderHostApp({ amount, name, session}){
                                onClick={() => PopupShowHide('popup1')}/>
                     </div>
                     <div className='h-7'>
-                        {session ? <LoggedIn/> : <UnLoggedIn/>}
+                        { getCookie('user-id') ? <LoggedIn/> : <UnLoggedIn/> }
                     </div>
                 </div>
             </div>

@@ -5,15 +5,14 @@ export default function Header({ inner }) {
         window.onwheel = e => {
             if(e.deltaY >= 0){
                 document.getElementById('header-element')
-                    .classList.add('header-animation-1-elem')
+                    .classList.add('header-animation-1-elem');
                 document.getElementById('header-element')
-                    .classList.remove('header-animation-2-elem')
+                    .classList.remove('header-animation-2-elem');
             } else {
-                // Wheel Up
                 document.getElementById('header-element')
-                    .classList.add('header-animation-2-elem')
+                    .classList.add('header-animation-2-elem');
                 document.getElementById('header-element')
-                    .classList.remove('header-animation-1-elem')
+                    .classList.remove('header-animation-1-elem');
             }
         }
     })

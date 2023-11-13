@@ -5,10 +5,12 @@ const config = {
     api:{
         users_api: {
             create_user: `http://localhost:3000/users/create`,
-            login_user: `http://localhost:3000/users/login`
+            login_user: `http://localhost:3000/users/login`,
+            get_user_data: `http://localhost:3000/users/get-data`
         },
         projects_api: {
-            create_project : `http://localhost:3000/projects/create`
+            create_project : `http://localhost:3000/projects/create`,
+            get_projects : `http://localhost:3000/projects/get`
         }
     }
 }
@@ -88,6 +90,7 @@ export async function createProject(data, callback) {
     await Connect(config.api.projects_api.create_project, {
         id: 'null-1',
         name: data.name,
+        ownerid: getCookie('user-id'),
         type: data.type
     }, function (result) {
         if (result === true)
@@ -96,6 +99,27 @@ export async function createProject(data, callback) {
             callback(false)
     })
 }
+
+export async function getProjects(callback) {
+    await Connect(config.api.projects_api.get_projects,{
+        ownerid: getCookie('user-id'),
+    }, function (result) {
+        callback(result)
+    })
+}
+
+export async function getUserData(callback) {
+    await Connect(config.api.users_api.get_user_data,{
+        userid: getCookie('user-id'),
+    }, function (result) {
+        callback(result)
+    })
+}
+
+export function deleteCookie(name) {
+    document.cookie = name+'=; Max-Age=-99999999;';
+}
+
 export const PopupShowHide = (id) => {
     if (document.getElementById(id).classList.contains('popup-settings-show')){
         document.getElementById(id).classList.remove('popup-settings-show')

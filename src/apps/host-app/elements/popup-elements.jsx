@@ -1,4 +1,4 @@
-import {forwardRef, useRef} from "react";
+import {forwardRef, useEffect, useRef} from "react";
 import {createProject, createUser, getCookie, logIn, stringify} from "../../../server-api/using";
 import {useState} from "react";
 
@@ -160,24 +160,48 @@ export function PopupLogIn({ id }){
 }
 
 export function PopupUploadFiles({ id }){
+    let dropArea = document.getElementById('drop-area')
+    function handleDrop(e) {
+        let dt = e.dataTransfer
+        let files = dt.files
+
+        handleFiles(files)
+    }
+    function handleFiles(files) {
+        ([...files]).forEach(uploadFile)
+    }
+    async function uploadFile(file) {
+        let url = `http://localhost:3000/files/upload/${getCookie('user-id')}/${getCookie('project-id')}/`
+        let xhr = new XMLHttpRequest()
+        let formData = new FormData()
+        xhr.open('POST', url, true)
+        await formData.append('file', file)
+        await xhr.send(formData)
+        xhr.onload = () => {
+            if (xhr.response === false) {
+                console.log('error when tries upload files')
+            } else {
+                console.log('no error when tries upload files, fucking good staff')
+            }
+        }
+    }
+
     return(
         <div className='pop-1'>
-            <div>
-                <span></span>
-                <span></span>
-            </div>
             <form className='pop-2'>
                 <>
-                    {/*<div className='pop-7'*/}
-                    {/*    id="drop_zone"*/}
-                    {/*    onDrop={(event) => dropHandler(event)}*/}
-                    {/*    onDragOver={(event) => dragOverHandler(event)}>*/}
-                    {/*    <p>Drag one or more files to this <i>drop zone</i>.</p>*/}
-                    {/*</div>*/}
+                    <div id="drop-area" onDrop={() => handleDrop} className='pop-8'>
+                        <form className="pop-9" name='upload-form'>
+                            <input type="file" id="fileElem" multiple accept="image/*" onChange={
+                                e => handleFiles(e.target.files)
+                            } />
+                            <label className="button" htmlFor="fileElem">Select some files</label>
+                        </form>
+                    </div>
                 </>
                 <>
-                    <input type='button' className='pop-4' value='Upload'/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
+                        document.cookie=`project-id=null`
                         try {
                             document.getElementById(id).classList.add('popup-settings-hide')
                             document.getElementById(id).classList.remove('popup-settings-show')
@@ -230,6 +254,9 @@ export function PopupCreateProject({ id }){
                            onClick={() => createProject({
                                name: projectName.current.value,
                                type: value
+                           }, function (res) {
+                               if (res)
+                                   console.log(res)
                            })}/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
