@@ -98,7 +98,7 @@ export default function Hosting(){
                     Use app right now
                 </span>
                 <div className='b28'>
-                    <a href='/host-app/index'> App </a>
+                    <a href='/host-app/index' style={{ color: 'white' }}> To app </a>
                 </div>
             </div>
             <footer className='b29'>

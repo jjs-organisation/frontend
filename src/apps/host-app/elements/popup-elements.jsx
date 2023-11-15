@@ -41,7 +41,7 @@ export function PopupPayment({ id }) {
         <div className='pop-1'>
             <span className='pop-6'> Payment </span>
             <form className='pop-2'>
-                <>
+                <div>
                     <div className='pop-5'>
                         <div className='pop-6'>Amount</div>
                         <input type='text' className='pop-3' />
@@ -54,8 +54,8 @@ export function PopupPayment({ id }) {
                         <div className='pop-6'>Telephone</div>
                         <input type='text' className='pop-3' />
                     </div>
-                </>
-                <>
+                </div>
+                <div>
                     <input type='button' className='pop-4' value='Purchase'/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
@@ -63,7 +63,7 @@ export function PopupPayment({ id }) {
                             document.getElementById(id).classList.remove('popup-settings-show')
                         }catch (e) {}
                     }}/>
-                </>
+                </div>
             </form>
         </div>
     )

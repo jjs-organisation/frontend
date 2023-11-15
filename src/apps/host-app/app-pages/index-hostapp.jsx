@@ -4,6 +4,7 @@ import {PopupCreateProject, PopupLogIn, PopupUploadFiles} from "../elements/popu
 import Popup from "./popup";
 import {createProject, getCookie, getProjects, PopupShowHide} from "../../../server-api/using";
 import {ProjectsRender} from "../elements/projects-render";
+import NoProjects from "../elements/no-projects";
 
 export default class IndexHostApp extends React.Component {
     state = {
@@ -63,14 +64,16 @@ export default class IndexHostApp extends React.Component {
                             <span className='c-5'>Host new project</span>
                             <input type='button' className='c-6' value='Deploy'
                                    onClick={() => PopupShowHide('popup5')
-                                   }/>
+                                   }
+                                   disabled={!getCookie('user-id') ? true : false}/>
                             <input type='button' className='c-6' value='Обновить'
                                 onClick={() => this.updateForm()}
+                                disabled={!getCookie('user-id') ? true : false}
                             />
                         </div>
                         <div className='c-4'>
                             {
-                                <ProjectsRender />
+                                !getCookie('user-id') ? <NoProjects /> : <ProjectsRender />
                             }
                         </div>
                     </div>

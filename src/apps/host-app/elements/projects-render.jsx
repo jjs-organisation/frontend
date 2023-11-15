@@ -12,7 +12,6 @@ export function ProjectsRender () {
                 console.log(res)
             })
         };
-
         dataFetch();
     }, []);
 
