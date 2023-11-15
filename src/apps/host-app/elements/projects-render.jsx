@@ -1,4 +1,4 @@
-import {getProjects, PopupShowHide} from "../../../server-api/using";
+import {getProjects, PopupShowHide, runProject} from "../../../server-api/using";
 import {useEffect, useState} from "react";
 
 export function ProjectsRender () {
@@ -76,7 +76,10 @@ export function ProjectsRender () {
                                 document.cookie=`project-id=${item.id}`
                            }}/>
                 <input type='button' className='c-10' value='Start project' 
-                       onClick={() => console.log('start')}/> { /* callFunction(item.id) */ }
+                       onClick={() => runProject(item.id, function (res) {
+                           if (res === true)
+                               console.log('running')
+                       })}/>
                 <input type='button' className='c-10' value='Delete project'
                        onClick={() => console.log('delete')}/>
             </div>

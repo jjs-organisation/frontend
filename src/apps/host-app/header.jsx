@@ -24,16 +24,16 @@ export default function HeaderHostApp() {
     const LoggedIn = () => (
         <>
             <span className='h-7'> { UserName ? UserName : undefined } </span>
-            <a onClick={() => {
+            <span onClick={() => {
                 deleteCookie('user-id')
                 window.location.reload();
-            }}> Log out </a>
+            }}> Log out </span>
         </>
     )
     const UnLoggedIn = () => (
         <>
-            <a onClick={() => PopupShowHide('popup3')}> Log in </a>
-            <a onClick={() => PopupShowHide('popup2')}> Sign up </a>
+            <span className='h-9' onClick={() => PopupShowHide('popup3')}> Log in </span>
+            <span className='h-9' onClick={() => PopupShowHide('popup2')}> Sign up </span>
         </>
     )
 

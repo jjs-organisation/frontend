@@ -10,7 +10,8 @@ const config = {
         },
         projects_api: {
             create_project : `http://localhost:3000/projects/create`,
-            get_projects : `http://localhost:3000/projects/get`
+            get_projects : `http://localhost:3000/projects/get`,
+            run_project: `http://localhost:3000/projects/run`
         }
     }
 }
@@ -118,6 +119,15 @@ export async function getUserData(callback) {
 
 export function deleteCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
+}
+
+export async function runProject(projId, callback) {
+    await Connect(config.api.projects_api.run_project, {
+        id: projId,
+        uid: getCookie('user-id')
+    }, function (result) {
+        callback(result)
+    })
 }
 
 export const PopupShowHide = (id) => {

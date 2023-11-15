@@ -32,12 +32,7 @@ export default function Hosting(){
             <div className='b1'>
                 <span className='b2'> Use our hosting for your bot! </span>
                 <span className='b3'>
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
-                    SOMETEXTSOMETEXTSOMETEXTSOMETEXTSOMETEXT
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </span>
                 <input type='button' value='About' className='b4'/>
             </div>
