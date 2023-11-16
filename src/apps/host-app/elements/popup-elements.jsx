@@ -1,5 +1,5 @@
 import {forwardRef, useEffect, useRef} from "react";
-import {createProject, createUser, getCookie, logIn, stringify} from "../../../server-api/using";
+import {createProject, createUser, getCookie, logIn, payment, stringify} from "../../../server-api/using";
 import {useState} from "react";
 
 async function createAccount(popupId, signUpName, signUpEmail, signUpPhone, signUpPassword) {
@@ -17,6 +17,18 @@ async function createAccount(popupId, signUpName, signUpEmail, signUpPhone, sign
             document.getElementById(popupId).classList.remove('popup-settings-show');
         }
     });
+}
+
+function genBillId() {
+    let result = '';
+    const characters = '0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < 8) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
 }
 
 async function loginInAccount(popupId, loginName, loginPassword) {
@@ -37,6 +49,22 @@ async function loginInAccount(popupId, loginName, loginPassword) {
 }
 
 export function PopupPayment({ id }) {
+    const paymentAmount = useRef(null),
+        paymentMail = useRef(null),
+        paymentPhone = useRef(null);
+
+    async function paymentAccount(){
+        await payment({
+            amount: paymentAmount.current.value ,
+            login: 'r-piskarevpro_see-api',
+            password: 'r-piskarevpro_see*?1',
+            orderid: genBillId()
+        }, function (res) {
+            console.log(res)
+            return res.formUrl;
+        })
+    }
+
     return(
         <div className='pop-1'>
             <span className='pop-6'> Payment </span>
@@ -44,19 +72,25 @@ export function PopupPayment({ id }) {
                 <div>
                     <div className='pop-5'>
                         <div className='pop-6'>Amount</div>
-                        <input type='text' className='pop-3' />
+                        <input type='text' className='pop-3' ref={paymentAmount}/>
                     </div>
                     <div className='pop-5'>
                         <div className='pop-6'>Email</div>
-                        <input type='text' className='pop-3'/>
+                        <input type='text' className='pop-3' ref={paymentMail}/>
                     </div>
                     <div className='pop-5'>
                         <div className='pop-6'>Telephone</div>
-                        <input type='text' className='pop-3' />
+                        <input type='text' className='pop-3' ref={paymentPhone}/>
                     </div>
                 </div>
                 <div>
-                    <input type='button' className='pop-4' value='Purchase'/>
+                    <input type='button' className='pop-4' value='Purchase'
+                        onClick={() => {
+                            paymentAccount().then(v => {
+                                // window.location.replace(v)
+                            })
+                        }}
+                    />
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
                             document.getElementById(id).classList.add('popup-settings-hide')
@@ -122,7 +156,6 @@ export function PopupSignUp ({ id }) {
 export function PopupLogIn({ id }){
     const loginName = useRef(null),
             loginPassword = useRef(null);
-
     return(
         <div className='pop-1'>
             <span className='pop-6'> Log in </span>
@@ -149,9 +182,7 @@ export function PopupLogIn({ id }){
                         try {
                             document.getElementById(id).classList.add('popup-settings-hide')
                             document.getElementById(id).classList.remove('popup-settings-show')
-                        }catch (e) {
-
-                        }
+                        }catch (e) {}
                     }}/>
                 </>
             </form>

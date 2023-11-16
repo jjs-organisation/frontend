@@ -121,6 +121,16 @@ export function deleteCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
+export function payment(data, callback){
+    let link =` https://alfa.rbsuat.com/payment/rest/register.do?amount=${data.amount}&currency=810&language=ru&orderNumber=${data.orderid}&password=${data.password}&returnUrl=https://alfa.rbsuat.com/payment/finish.html&userName=${data.login}`
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', link, true);
+    xhr.send();
+    xhr.onload = () => {
+        callback(xhr.response)
+    }
+}
+
 export async function runProject(projId, callback) {
     await Connect(config.api.projects_api.run_project, {
         id: projId,
