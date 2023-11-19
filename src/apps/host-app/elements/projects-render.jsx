@@ -1,5 +1,6 @@
 import {getProjects, PopupShowHide, runProject} from "../../../server-api/using";
 import {useEffect, useState} from "react";
+import { NoProjectsLogged } from "./no-projects";
 
 export function ProjectsRender () {
     const [data, setData] = useState([]);
@@ -86,6 +87,8 @@ export function ProjectsRender () {
     ))
 
     return (
-        <ProjectsList />
+        <>
+            { !data[0] ? <NoProjectsLogged /> : <ProjectsList /> }
+        </>
     )
 }

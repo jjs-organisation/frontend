@@ -4,7 +4,7 @@ import {PopupCreateProject, PopupLogIn, PopupUploadFiles} from "../elements/popu
 import Popup from "./popup";
 import {createProject, getCookie, getProjects, PopupShowHide} from "../../../server-api/using";
 import {ProjectsRender} from "../elements/projects-render";
-import NoProjects from "../elements/no-projects";
+import { NoProjects } from "../elements/no-projects";
 
 export default class IndexHostApp extends React.Component {
     state = {
@@ -45,6 +45,10 @@ export default class IndexHostApp extends React.Component {
                                 </svg>
                                 <span className='c-13'> HTML web </span>
                             </div>
+                        </div>
+                    </div>
+                    <div className='c-2'>
+                        <div className='c-3'>
                             <div className='c-14' id='c-14' onClick={() => {
                                 if (document.getElementById('c-1').classList.contains('c-1-hide')) {
                                     document.getElementById('c-1').classList.add('c-1-show')
@@ -57,10 +61,6 @@ export default class IndexHostApp extends React.Component {
                                 }
                             }}> Закрыть
                             </div>
-                        </div>
-                    </div>
-                    <div className='c-2'>
-                        <div className='c-3'>
                             <span className='c-5'>Host new project</span>
                             <input type='button' className='c-6' value='Deploy'
                                    onClick={() => PopupShowHide('popup5')

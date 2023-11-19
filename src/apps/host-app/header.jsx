@@ -50,7 +50,7 @@ export default function HeaderHostApp() {
     return(
         <>
             <div className='h-header'>
-                <div className='h-2'> UniJS - Hosting Service</div>
+                <div className='h-2'> Hosting </div>
                 <div className='h-3'>
                     <div className='h-5'>
                         <label htmlFor='button-headerhostapp'>

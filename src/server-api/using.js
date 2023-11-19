@@ -1,17 +1,15 @@
+let backend_uri = `https://localhost:3451/` // || 95.163.233.114
 const config = {
-    xhr: {
-        backend_url: 'http://95.163.233.114:3450/'
-    },
     api:{
         users_api: {
-            create_user: `http://95.163.233.114:3450/users/create`,
-            login_user: `http://95.163.233.114:3450/users/login`,
-            get_user_data: `http://95.163.233.114:3450/users/get-data`
+            create_user: `https://localhost:3451/users/create`,
+            login_user: `https://localhost:3451/users/login`,
+            get_user_data: `https://localhost:3451/users/get-data`
         },
         projects_api: {
-            create_project : `http://95.163.233.114:3450/projects/create`,
-            get_projects : `http://95.163.233.114:3450/projects/get`,
-            run_project: `http://95.163.233.114:3450/projects/run`
+            create_project : `https://localhost:3451/projects/create`,
+            get_projects : `https://localhost:3451/projects/get`,
+            run_project: `https://localhost:3451/projects/run`
         }
     }
 }

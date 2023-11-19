@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 /*
 breakpoints: 745px
 400px
 */
 /*noinspection CssInvalidPropertyValue*/
-
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-
 a{
     color: black;
+}
+header a{
+    color: black !important;
+    text-decoration: none !important;
 }
 html{
     font-family: JetBrains Mono, Tahoma;
@@ -54,8 +57,17 @@ footer{
     padding-top: 25px;
     font-size: 36px;
 }
-.tl-1{
+.a32{
+    font-size: 20px;
 
+}
+.a33{
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 26px;
+    width: -webkit-fill-available;
 }
 .b{
     display: inline-block;
@@ -440,6 +452,10 @@ footer{
     background-color: #ffffff;
     border-radius:5px;
     box-shadow: 0px 0px 10px #000;
+    transition: all ease-in-out 1s;
+}
+.pop-1{
+    transition: all ease-in-out 1s;
 }
 .popup-settings-hide{
     display: none;
@@ -534,7 +550,8 @@ footer{
     flex-direction: column;
 }
 .c-1-hide{
-    width: 1%;
+    width: 0%;
+    padding: 0 !important;
 }
 .c-1-show{
     width: 20%;
@@ -661,15 +678,18 @@ footer{
 }
 .c-14{
     background-color: #000000;
-    width: -webkit-fill-available;
+    width: 200px;
     height: 50px;
-    margin-bottom: 25px;
     display: flex;
+    margin-left: 20px;
+    margin-right: 50px;
     justify-content: center;
     align-items: center;
     cursor: default;
     color: white;
     padding-right: 3px;
+    border-radius: 10px;
+    background: #0064f8;
 }
 .c-15{
     width: -webkit-fill-available;
@@ -681,18 +701,18 @@ footer{
     color: black !important;
 }
 .header-animation-1-elem{
-    color: transparent;
+    color: transparent !important;
     height: 0;
 }
 .header-animation-1-elem a{
-    color: transparent;
+    color: transparent !important;
 }
 .header-animation-2-elem{
-    color: black;
+    color: black !important;
     height: 50px;
 }
 .header-animation-2-elem a{
-    color: black;
+    color: black !important;
 }
 .header-animation-1-elem a, .header-animation-2-elem a{
     transition: 0.4s;
@@ -909,8 +929,7 @@ footer{
     color: rgb(23, 23, 23);
 }
 .a25{
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: rgb(23, 23, 23);
 }
 .a26{
@@ -939,7 +958,7 @@ footer{
     transform-style: preserve-3d;
 }
 .a31{
-    border: 1px saddlebrown solid;
+    border: 0px saddlebrown solid;
     width: auto;
     height: -webkit-fill-available;
     display: flex;

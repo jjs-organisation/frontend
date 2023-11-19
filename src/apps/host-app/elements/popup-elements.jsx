@@ -83,21 +83,19 @@ export function PopupPayment({ id }) {
                         <input type='text' className='pop-3' ref={paymentPhone}/>
                     </div>
                 </div>
-                <div>
-                    <input type='button' className='pop-4' value='Purchase'
-                        onClick={() => {
-                            paymentAccount().then(v => {
-                                // window.location.replace(v)
-                            })
-                        }}
-                    />
-                    <input type='button' className='pop-4' value='Close' onClick={() => {
-                        try {
-                            document.getElementById(id).classList.add('popup-settings-hide')
-                            document.getElementById(id).classList.remove('popup-settings-show')
-                        }catch (e) {}
-                    }}/>
-                </div>
+                <input type='button' className='pop-4' value='Purchase'
+                       onClick={() => {
+                           paymentAccount().then(v => {
+                               // window.location.replace(v)
+                           })
+                       }}
+                />
+                <input type='button' className='pop-4' value='Close' onClick={() => {
+                    try {
+                        document.getElementById(id).classList.add('popup-settings-hide')
+                        document.getElementById(id).classList.remove('popup-settings-show')
+                    }catch (e) {}
+                }}/>
             </form>
         </div>
     )
@@ -176,7 +174,7 @@ export function PopupLogIn({ id }){
                             id,
                             loginName.current.value,
                             loginPassword.current.value
-                        )
+                        ).then(() => window.location.reload())
                     }/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
@@ -202,7 +200,7 @@ export function PopupUploadFiles({ id }){
         ([...files]).forEach(uploadFile)
     }
     async function uploadFile(file) {
-        let url = `http://localhost:3000/files/upload/${getCookie('user-id')}/${getCookie('project-id')}/`
+        let url = `https://localhost:3451/files/upload/${getCookie('user-id')}/${getCookie('project-id')}/`
         let xhr = new XMLHttpRequest()
         let formData = new FormData()
         xhr.open('POST', url, true)
@@ -223,7 +221,7 @@ export function PopupUploadFiles({ id }){
                 <>
                     <div id="drop-area" onDrop={() => handleDrop} className='pop-8'>
                         <form className="pop-9" name='upload-form'>
-                            <input type="file" id="fileElem" multiple accept="image/*" onChange={
+                            <input type="file" id="fileElem" multiple accept="*" onChange={
                                 e => handleFiles(e.target.files)
                             } />
                             <label className="button" htmlFor="fileElem">Select some files</label>
