@@ -350,6 +350,13 @@ footer{
     padding-bottom: 25px;
     border-radius: 20px;
 }
+.b26 a{
+    text-decoration: none;
+    transition: color ease-in-out 1s;
+}
+.b26 a:hover{
+    color: black;
+}
 .b27{
     color: white;
 }
@@ -369,6 +376,9 @@ footer{
     width: -webkit-fill-available;
     margin-top: 50px;
     height: 400px;
+}
+.b29 a{
+    text-decoration: none;
 }
 .b30{
     background: black;
@@ -948,14 +958,17 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .a30{
     width: 250px;
     height: 250px;
     transition: transform 1s;
     transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .a31{
     border: 0px saddlebrown solid;

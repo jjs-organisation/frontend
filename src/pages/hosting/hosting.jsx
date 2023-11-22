@@ -30,7 +30,7 @@ export default function Hosting(){
     return(
         <>
             <div className='b1'>
-                <span className='b2'> Use our hosting for your bot! </span>
+                <span className='b2'> Use our hosting for your project! </span>
                 <span className='b3'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </span>
@@ -107,7 +107,7 @@ export default function Hosting(){
                 </a>
             </footer>
             <div className='b30'>
-                OOO "MOLDOVANE"
+                support@unijs.ru
             </div>
         </>
     )

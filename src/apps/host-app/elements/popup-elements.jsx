@@ -1,5 +1,13 @@
 import {forwardRef, useEffect, useRef} from "react";
-import {createProject, createUser, getCookie, logIn, payment, stringify} from "../../../server-api/using";
+import {
+    createProject,
+    createUser,
+    getCookie,
+    logIn,
+    payment,
+    sendVerifyCodeToBackend,
+    stringify
+} from "../../../server-api/using";
 import {useState} from "react";
 
 async function createAccount(popupId, signUpName, signUpEmail, signUpPhone, signUpPassword) {
@@ -10,13 +18,7 @@ async function createAccount(popupId, signUpName, signUpEmail, signUpPhone, sign
         password: signUpPassword,
         country: 'ru'
     }
-    await createUser(data, function (r) {
-        console.log(r)
-        if (r === true){
-            document.getElementById(popupId).classList.add('popup-settings-hide');
-            document.getElementById(popupId).classList.remove('popup-settings-show');
-        }
-    });
+    await createUser(data, false);
 }
 
 function genBillId() {
@@ -131,12 +133,22 @@ export function PopupSignUp ({ id }) {
                 <>
                     <input type='button' className='pop-4' value='Sign Up' onClick={() =>
                         createAccount(
-                            id,
-                            signUpName.current.value,
-                            signUpEmail.current.value,
-                            signUpPhone.current.value,
-                            signUpPassword.current.value
-                        )
+
+                        ).then(() => {
+                            try {
+                                localStorage.setItem(`${getCookie('verify-id')}`, JSON.stringify({
+                                    name: signUpName.current.value,
+                                    phone: signUpPhone.current.value,
+                                    mail: signUpEmail.current.value,
+                                    password: signUpPassword.current.value,
+                                    country: 'ru'
+                                }))
+                                document.getElementById(`popup6`).classList.remove('popup-settings-hide')
+                                document.getElementById(`popup6`).classList.add('popup-settings-show')
+                            }catch (e) {
+
+                            }
+                        })
                     }/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
@@ -151,6 +163,58 @@ export function PopupSignUp ({ id }) {
         </div>
     )
 }
+
+export function PopupVerifyCode ({ id }) {
+    const verifyCode = useRef(null);
+    
+    return(
+        <div className='pop-1' style={{ zIndex: 10 }}>
+            <span className='pop-6'> Verify your mail please </span>
+            <form className='pop-2'>
+                <>
+                    <div className='pop-5'>
+                        <div className='pop-6' >Code from mail</div>
+                        <input type='text' className='pop-3' ref={verifyCode}/>
+                    </div>
+                </>
+                <>
+                    <input type='button' className='pop-4' value='Sign Up' onClick={() =>
+                        sendVerifyCodeToBackend({
+                            code: verifyCode.current.value
+                        },async function (c) {
+                            if (c === true) {
+                                try {
+                                    document.getElementById(id).classList.add('popup-settings-hide')
+                                    document.getElementById(id).classList.remove('popup-settings-show')
+                                    await createUser(
+                                        JSON.parse(
+                                            localStorage.getItem(`${getCookie(`verify-id`)}`)
+                                        ),
+                                        true
+                                    );
+                                } catch (e) {
+
+                                }
+                            } else {
+                                alert('code incorrect')
+                                console.log(false)
+                            }
+                        })
+                    }/>
+                    <input type='button' className='pop-4' value='Close' onClick={() => {
+                        try {
+                            document.getElementById(id).classList.add('popup-settings-hide')
+                            document.getElementById(id).classList.remove('popup-settings-show')
+                        }catch (e) {
+
+                        }
+                    }}/>
+                </>
+            </form>
+        </div>
+    )
+}
+
 export function PopupLogIn({ id }){
     const loginName = useRef(null),
             loginPassword = useRef(null);

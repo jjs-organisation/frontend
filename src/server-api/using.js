@@ -4,7 +4,8 @@ const config = {
         users_api: {
             create_user: `https://localhost:3451/users/create`,
             login_user: `https://localhost:3451/users/login`,
-            get_user_data: `https://localhost:3451/users/get-data`
+            get_user_data: `https://localhost:3451/users/get-data`,
+            verify_code: `https://localhost:3451/users/create/verify`,
         },
         projects_api: {
             create_project : `https://localhost:3451/projects/create`,
@@ -56,23 +57,38 @@ async function Connect(uri, body, callback) {
     };
 }
 
-export async function createUser(data, callback) {
+export async function createUser(data, verify) {
     await Connect(config.api.users_api.create_user, {
         id: 'null-1',
         userdata: {
-            name: data.name,
-            phone: data.phone,
-            mail: data.mail,
-            password: data.password,
-            country: data.country,
+            name: data.name || null,
+            phone: data.phone || null,
+            mail: data.mail || null,
+            password: data.password || null,
+            country: data.country || null,
             dateofreg: getDate()
-        }
+        },
+        verified: verify
     }, function (result) {
-        if (result === true)
-            callback(true)
-        else
-            callback(false)
+        try {
+            document.cookie = `verify-id=${result.r}`
+        }catch (e) {
+            console.log('caught err when tries set cookie <verify-id>')
+        }
     })
+}
+
+export async function sendVerifyCodeToBackend(data, callback){
+    await Connect(config.api.users_api.verify_code, {
+        code: data.code,
+        id: getCookie('verify-id')
+    }, function (result) {
+            if (result.r === true)
+                callback(true)
+            else
+                callback(false)
+        }
+    )
 }
 
 export async function logIn(data, callback) {

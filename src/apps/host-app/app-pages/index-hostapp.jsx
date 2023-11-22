@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import React from "react";
-import {PopupCreateProject, PopupLogIn, PopupUploadFiles} from "../elements/popup-elements";
+import {PopupCreateProject, PopupLogIn, PopupUploadFiles, PopupVerifyCode} from "../elements/popup-elements";
 import Popup from "./popup";
 import {createProject, getCookie, getProjects, PopupShowHide} from "../../../server-api/using";
 import {ProjectsRender} from "../elements/projects-render";
@@ -83,6 +83,9 @@ export default class IndexHostApp extends React.Component {
                 }/>
                 <Popup id={'popup5'} popupPart={
                     <PopupCreateProject id={'popup5'}/>
+                }/>
+                <Popup id={'popup6'} popupPart={
+                    <PopupVerifyCode id={'popup6'}/>
                 }/>
             </>
         )
