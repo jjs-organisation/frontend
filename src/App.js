@@ -7,6 +7,8 @@ import LayoutHostApp from "./apps/host-app/layout";
 import IndexHostApp from "./apps/host-app/app-pages/index-hostapp";
 import NotFoundHostApp from "./apps/host-app/app-pages/notfound";
 import Editor from "./apps/html-editor/editor.tsx";
+import {Search} from "react-router";
+import Services from "./apps/services/services";
 
 function App() {
   const  IndexHeader = () => (
@@ -44,6 +46,7 @@ function App() {
                    />}>
               </Route>
               <Route path='/editor' element={<Editor />}/>
+              <Route path='/services/*' element={<Services />} />
               <Route path='/host-app/*' element={<HostApp />} />
               <Route path='*' element={<Layout inner={<NotFoundHostApp />}
                   Head={<NotFoundHeader />}

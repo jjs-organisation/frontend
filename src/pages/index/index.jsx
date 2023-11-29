@@ -7,7 +7,7 @@ export default function Index() {
                         UniJS
                         <br />
                         <span className='a32'>
-                            Universal JavaScript Platform
+                            Universal JavaScript Solutions
                         </span>
                     </div>
                     <div className="a6">
@@ -19,7 +19,7 @@ export default function Index() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                     <div className="a9">
-                        >_Development resources <br/> for your projects
+                        >_Resources & Apps <br/> for your projects
                         <br />
                         <div className='a33'>
                             <a> WebEditor </a>
@@ -30,47 +30,48 @@ export default function Index() {
                 </div>
             </section>
             <div id="pricing" className="a10">
-                pricing
+                most popular
             </div>
             <section className="a11">
                 <div className="a12">
                     <div>
-                        <span className="a13">FREE</span>
+                        <span className="a13"> WEB Development App </span>
                     </div>
                     <br/>
                     <div className="a14">
-                        <span className="a15"> Good for small projects </span>
+                        <span className="a15"> Can be used for tests </span>
                         <br/>
-                        <span className="a16">@Text response</span>
-                        <span className="a16">@Bot commands </span>
-                        <span className="a16">@Media messages</span>
+                        <span className="a16"> @HTML  </span>
+                        <span className="a16"> @CSS   </span>
+                        <span className="a16"> @JS </span>
                     </div>
                 </div>
                 <div className="a12">
                     <div>
-                        <span className="a13">ULTIMATE </span>
+                        <span className="a13"> Order development  </span>
                     </div>
                     <br/>
                     <div className="a14">
-                        <span className="a15"> Use it for dynamic projects </span>
+                        <span className="a15"> Any project types </span>
                         <br/>
-                        <span className="a16">@Connection to GoogleSheets</span>
-                        <span className="a16">@Dynamic data usage</span>
-                        <span className="a16">@FileSystem</span>
-                        <span className="a16">@TextParsing</span>
+                        <span className="a16">@Telegram bot or app</span>
+                        <span className="a16">@Discord bot</span>
+                        <span className="a16">@Website</span>
+                        <span className="a16">@Webapp</span>
                     </div>
                 </div>
                 <div className="a12">
                     <div>
-                        <span className="a13">PROFESSIONAL </span>
+                        <span className="a13"> Hosting service </span>
                     </div>
                     <br/>
                     <div className="a14">
-                            <span className="a15">Best choise for enterprise
-                                bot development </span>
+                            <span className="a15">
+                                Simple solution to deploy app
+                            </span>e
                         <br/>
-                        <span className="a16">@Connection to MySql</span>
-                        <span className="a16">@Payments</span>
+                        <span className="a16">@Connection to MySql </span>
+                        <span className="a16">@Simple usage </span>
                     </div>
                 </div>
             </section>
@@ -78,17 +79,19 @@ export default function Index() {
             <section className="a17">
                 <div className="a18">
                     <div className="a22">
-                        Simple hosting for your projects
+                        Find service you need in UniJS
                     </div>
                     <div className="a19">
-                        <input type="button" className="b tb-1" style={{ color: 'white' }} value="To hosting"
+                        <input type="button" className="b tb-1" style={{ color: 'white' }} value="Find"
                         onClick={() => window.location.replace('host-app/index')}/>
                     </div>
                 </div>
                 <div className="a20">
-                    change log<br />
+                    Service list:<br />
                     <span className='a23'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        HTML Editor <br/>
+                        Hosting <br />
+                        Order development
                     </span>
                 </div>
             </section>
@@ -122,7 +125,7 @@ export default function Index() {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="95" height="95" viewBox="0 0 50 50">
                                     <path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
                                 </svg>
-                                <span className='a32 back'> 8 (993) 275-55-19 </span>
+                                <span className='a32 back'> twitter.com/unijsprofile </span>
                             </figcaption>
                         </div>
                         <div className='a30'>

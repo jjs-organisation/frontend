@@ -18,7 +18,7 @@ async function createAccount(popupId, signUpName, signUpEmail, signUpPhone, sign
         password: signUpPassword,
         country: 'ru'
     }
-    await createUser(data, false);
+    return await createUser(data, false);
 }
 
 function genBillId() {
@@ -131,12 +131,17 @@ export function PopupSignUp ({ id }) {
                     </div>
                 </>
                 <>
-                    <input type='button' className='pop-4' value='Sign Up' onClick={() =>
-                        createAccount(
-
-                        ).then(() => {
+                    <input type='button' className='pop-4' value='Sign Up' onClick={async () => {
+                        await createAccount(
+                            'UN',
+                            signUpName.current.value,
+                            signUpEmail.current.value,
+                            signUpPhone.current.value,
+                            signUpPassword.current.value,
+                        );
+                        setTimeout(() => {
                             try {
-                                localStorage.setItem(`${getCookie('verify-id')}`, JSON.stringify({
+                                localStorage.setItem(`${(getCookie('verify-id'))}`, JSON.stringify({
                                     name: signUpName.current.value,
                                     phone: signUpPhone.current.value,
                                     mail: signUpEmail.current.value,
@@ -145,11 +150,11 @@ export function PopupSignUp ({ id }) {
                                 }))
                                 document.getElementById(`popup6`).classList.remove('popup-settings-hide')
                                 document.getElementById(`popup6`).classList.add('popup-settings-show')
-                            }catch (e) {
+                            } catch (e) {
 
                             }
-                        })
-                    }/>
+                        }, 1000)
+                    }}/>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
                         try {
                             document.getElementById(id).classList.add('popup-settings-hide')
@@ -186,14 +191,20 @@ export function PopupVerifyCode ({ id }) {
                                 try {
                                     document.getElementById(id).classList.add('popup-settings-hide')
                                     document.getElementById(id).classList.remove('popup-settings-show')
+                                    console.log(localStorage.getItem(
+                                        `${getCookie(`verify-id`)}`
+                                    ))
                                     await createUser(
                                         JSON.parse(
-                                            localStorage.getItem(`${getCookie(`verify-id`)}`)
+                                            localStorage.getItem(
+                                                `${getCookie(`verify-id`)}`
+                                            )
                                         ),
                                         true
                                     );
                                 } catch (e) {
-
+                                    console.log(localStorage.getItem(`${getCookie(`verify-id`)}`))
+                                    console.log(e)
                                 }
                             } else {
                                 alert('code incorrect')
@@ -333,7 +344,7 @@ export function PopupCreateProject({ id }){
                         <div className='pop-6'>Project Name</div>
                         <input type='text' className='pop-3' ref={projectName}/>
                     </div>
-                    <div className='pop-5'>
+                    <div className='pop-5-deploy'>
                         <div className='pop-6'>Project type</div>
                         <select value={value} onChange={handleChange}>
                             <option value='NodeJS'> NodeJS </option>

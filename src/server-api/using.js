@@ -61,11 +61,11 @@ export async function createUser(data, verify) {
     await Connect(config.api.users_api.create_user, {
         id: 'null-1',
         userdata: {
-            name: data.name || null,
-            phone: data.phone || null,
-            mail: data.mail || null,
-            password: data.password || null,
-            country: data.country || null,
+            name: data.name,
+            phone: data.phone,
+            mail: data.mail,
+            password: data.password,
+            country: data.country,
             dateofreg: getDate()
         },
         verified: verify
@@ -81,7 +81,7 @@ export async function createUser(data, verify) {
 export async function sendVerifyCodeToBackend(data, callback){
     await Connect(config.api.users_api.verify_code, {
         code: data.code,
-        id: getCookie('verify-id')
+        id: getCookie(`verify-id`)
     }, function (result) {
             if (result.r === true)
                 callback(true)

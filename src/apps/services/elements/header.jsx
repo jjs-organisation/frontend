@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-export default function Header({ inner }) {
+export default function HeaderServices({ inner }) {
     useEffect(() => {
         window.onwheel = e => {
             if(e.deltaY >= 0){
@@ -19,7 +19,7 @@ export default function Header({ inner }) {
     return(
         <header id='header-element'>
             <div className="a1">
-                <a href='/'>UniJS - IN DEVELOPMENT</a>
+                <a href='/'>UniJS Services - IN DEVELOPMENT</a>
             </div>
             <div className="tl-1">
                 { inner }
