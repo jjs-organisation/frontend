@@ -14,14 +14,15 @@ function App() {
   const  IndexHeader = () => (
       <>
           <a href="/dev"> development </a>
-          <a href="/hosting">hosting</a>
+          <a href="/api">api</a>
           <a href="#pricing">pricing</a>
           <a href="#contacts">contacts</a>
       </>
   )
+
   const HostingHeader = () => (
       <>
-          <a href="#b12">api</a>
+          <a href="#b12">nodejs api</a>
           <a href="#b5">about</a>
       </>
   )
@@ -40,7 +41,7 @@ function App() {
                            Head={<IndexHeader />}
                    />}>
               </Route>
-              <Route exact path='/hosting' element={
+              <Route exact path='/api' element={
                    <Layout inner={<Hosting/>}
                            Head={<HostingHeader />}
                    />}>

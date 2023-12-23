@@ -30,7 +30,7 @@ function Editor() {
     const [state, dispatch] = useLocalStorage('state', initialState);
     return (
         <div className="App">
-            <EditorHeader inner={headerElements} />
+            {/*<EditorHeader inner={headerElements} />*/}
             <main className='editor-main'>
                 <Context.Provider value={{ state, dispatch }}>
                     <Layout />

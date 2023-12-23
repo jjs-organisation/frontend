@@ -1,16 +1,19 @@
-let backend_uri = `https://localhost:3451/` // || 95.163.233.114
+let backend_uri = `http://localhost:3450/` // || 95.163.233.114
+// http://localhost:3450/ -- HTTP!!!
+// https://localhost:3451/ -- HTTPS!!!
+
 const config = {
     api:{
         users_api: {
-            create_user: `https://localhost:3451/users/create`,
-            login_user: `https://localhost:3451/users/login`,
-            get_user_data: `https://localhost:3451/users/get-data`,
-            verify_code: `https://localhost:3451/users/create/verify`,
+            create_user: `${backend_uri}users/create`,
+            login_user: `${backend_uri}users/login`,
+            get_user_data: `${backend_uri}users/get-data`,
+            verify_code: `${backend_uri}users/create/verify`,
         },
         projects_api: {
-            create_project : `https://localhost:3451/projects/create`,
-            get_projects : `https://localhost:3451/projects/get`,
-            run_project: `https://localhost:3451/projects/run`
+            create_project : `${backend_uri}projects/create`,
+            get_projects : `${backend_uri}projects/get`,
+            run_project: `${backend_uri}projects/run`
         }
     }
 }

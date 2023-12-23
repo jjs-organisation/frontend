@@ -20,7 +20,7 @@ export default class IndexHostApp extends React.Component {
             <>
                 <div className='ha-index'>
                     <div className='c-1 c-1-show' id='c-1'>
-                        <span className='c-11'> Сервера </span>
+                        <span className='c-11'> Servers </span>
                         <div className='c-15'>
                             <div className='c-12'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="60px" height="64px">
@@ -53,7 +53,7 @@ export default class IndexHostApp extends React.Component {
                                 if (document.getElementById('c-1').classList.contains('c-1-hide')) {
                                     document.getElementById('c-1').classList.add('c-1-show')
                                     document.getElementById('c-1').classList.remove('c-1-hide')
-                                    document.getElementById('c-14').innerText = 'Закрыть';
+                                    document.getElementById('c-14').innerText = 'Hide';
                                 } else {
                                     document.getElementById('c-1').classList.remove('c-1-show')
                                     document.getElementById('c-1').classList.add('c-1-hide')
@@ -66,7 +66,7 @@ export default class IndexHostApp extends React.Component {
                                    onClick={() => PopupShowHide('popup5')
                                    }
                                    disabled={!getCookie('user-id') ? true : false}/>
-                            <input type='button' className='c-6' value='Обновить'
+                            <input type='button' className='c-6' value='Refresh'
                                 onClick={() => this.updateForm()}
                                 disabled={!getCookie('user-id') ? true : false}
                             />

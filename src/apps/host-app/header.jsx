@@ -58,7 +58,7 @@ export default function HeaderHostApp() {
                                 !getCookie('user-id') ? null : 0.00
                             } </span>
                         </label>
-                        <input type='button' name='button-headerhostapp' className='h-4' value='Purchase+'
+                        <input type='button' name='button-headerhostapp' className='h-4' value='balance +'
                                onClick={() => PopupShowHide('popup1')}
                                disabled={
                                    !getCookie('user-id') ? true : false

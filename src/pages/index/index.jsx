@@ -29,70 +29,29 @@ export default function Index() {
                     </div>
                 </div>
             </section>
-            <div id="pricing" className="a10">
-                most popular
-            </div>
             <section className="a11">
                 <div className="a12">
-                    <div>
-                        <span className="a13"> WEB Development App </span>
-                    </div>
-                    <br/>
-                    <div className="a14">
-                        <span className="a15"> Can be used for tests </span>
-                        <br/>
-                        <span className="a16"> @HTML  </span>
-                        <span className="a16"> @CSS   </span>
-                        <span className="a16"> @JS </span>
+                    <div className="a18">
+                        <div className="a22">
+                            Find service you need in UniJS
+                        </div>
+                        <div className="a19">
+                            <input type="button" className="but tb-1" style={{ color: 'black' }} value="Find"
+                                   onClick={() => window.location.replace('services/')}/>
+                        </div>
                     </div>
                 </div>
                 <div className="a12">
-                    <div>
-                        <span className="a13"> Order development  </span>
+                    <div className="a20">
+                        <text style={{
+                            fontSize: 36
+                        }}>Service list:</text><br />
+                        <span className='a23'>
+                            HTML Editor <br/>
+                            Hosting <br />
+                            Order development
+                        </span>
                     </div>
-                    <br/>
-                    <div className="a14">
-                        <span className="a15"> Any project types </span>
-                        <br/>
-                        <span className="a16">@Telegram bot or app</span>
-                        <span className="a16">@Discord bot</span>
-                        <span className="a16">@Website</span>
-                        <span className="a16">@Webapp</span>
-                    </div>
-                </div>
-                <div className="a12">
-                    <div>
-                        <span className="a13"> Hosting service </span>
-                    </div>
-                    <br/>
-                    <div className="a14">
-                            <span className="a15">
-                                Simple solution to deploy app
-                            </span>e
-                        <br/>
-                        <span className="a16">@Connection to MySql </span>
-                        <span className="a16">@Simple usage </span>
-                    </div>
-                </div>
-            </section>
-
-            <section className="a17">
-                <div className="a18">
-                    <div className="a22">
-                        Find service you need in UniJS
-                    </div>
-                    <div className="a19">
-                        <input type="button" className="b tb-1" style={{ color: 'white' }} value="Find"
-                        onClick={() => window.location.replace('host-app/index')}/>
-                    </div>
-                </div>
-                <div className="a20">
-                    Service list:<br />
-                    <span className='a23'>
-                        HTML Editor <br/>
-                        Hosting <br />
-                        Order development
-                    </span>
                 </div>
             </section>
             <footer id="contacts" className='a26'>
@@ -165,11 +124,9 @@ export default function Index() {
                     <span className='a24'> Ереванская ул., 16, корп. 5, Москва, 115304 </span>
                     <span className='a24'> 8 (993) 275-55-19 </span>
                     <span className='a24'> Мы может и не банк, зато на нас санкций нету </span>
+                    <span className='a24'> support@unijs.ru</span>
                 </div>
             </footer>
-            <div className="a21">
-                support@unijs.ru
-            </div>
         </>
     )
 }
