@@ -20,7 +20,7 @@ export default class IndexHostApp extends React.Component {
             <>
                 <div className='ha-index'>
                     <div className='c-1 c-1-show' id='c-1'>
-                        <span className='c-11'> Servers </span>
+                        <span className='c-11'> Settings </span>
                         <div className='c-15'>
                             <div className='c-12'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="60px" height="64px">
@@ -91,13 +91,13 @@ export default class IndexHostApp extends React.Component {
         )
     }
 }
-//<div className='c-7'>
-//                             <div className='c-8 c-8-stopped' id='c-8'>
-//                                 {() => stateBox()}
-//                             </div>
-//                             <span className='c-9'>
-//                             PROJECT_NAME
-//                         </span>
-//                             <input type='button' className='c-10' value='Upload files'
-//                                    onClick={() => PopupShowHide('popup4')} />
-//                         </div>
+// <div className='c-7'>
+//     <div className='c-8 c-8-stopped' id='c-8'>
+//         {() => stateBox()}
+//     </div>
+//     <span className='c-9'>
+//     PROJECT_NAME
+// </span>
+//     <input type='button' className='c-10' value='Upload files'
+//            onClick={() => PopupShowHide('popup4')} />
+// </div>

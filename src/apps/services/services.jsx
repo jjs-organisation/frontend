@@ -1,7 +1,8 @@
+import React from 'react';
 import {Outlet, Route, Routes} from "react-router-dom";
 import Index from "./app-pages/index-page";
 import NotFoundHostApp from "../host-app/app-pages/notfound";
-import Layout from "./layout"
+import { LayoutHostApp } from "./layout"
 import Neiro from "../neiro/neiro";
 import Editor from "../html-editor/editor.tsx";
 
@@ -19,7 +20,7 @@ export default function Services() {
     )
     return(
         <>
-            <Layout inner={routeElement()}/>
+            <LayoutHostApp inner={routeElement()}/>
         </>
     )
 }

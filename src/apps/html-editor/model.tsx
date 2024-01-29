@@ -9,6 +9,12 @@ export interface IState {
     theme: EditorTheme;
 }
 
+export interface editorState {
+    projectName: string;
+    projectId  : string;
+    projectType: string;
+}
+
 export interface IContext {
     state: IState;
     dispatch: Dispatch<SetStateAction<IState>>;

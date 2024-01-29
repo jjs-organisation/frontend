@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect} from "react";
 
-export default function HeaderServices({ inner }) {
+export default function HeaderUserAPI({ inner }) {
     useEffect(() => {
         window.onwheel = e => {
             if(e.deltaY >= 0){
@@ -20,7 +20,7 @@ export default function HeaderServices({ inner }) {
     return(
         <header id='header-element'>
             <div className="a1">
-                <a href='/'>UniJS Services - IN DEVELOPMENT</a>
+                <a href='/'>UniJS User Api - IN DEVELOPMENT</a>
             </div>
             <div className="tl-1">
                 { inner }

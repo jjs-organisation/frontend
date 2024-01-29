@@ -1,3 +1,4 @@
+import React from "react";
 import MEditor from '@monaco-editor/react';
 import { useContext } from 'react';
 import { editorOptions } from '../config.ts';

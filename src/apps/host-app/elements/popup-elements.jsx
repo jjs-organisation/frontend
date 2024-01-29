@@ -1,3 +1,4 @@
+import React from 'react';
 import {forwardRef, useEffect, useRef} from "react";
 import {
     createProject,
@@ -43,7 +44,7 @@ async function loginInAccount(popupId, loginName, loginPassword) {
         if (res.r === false || res.r === 'error'){
             console.log('incorrect data')
         } else {
-            document.cookie=`user-id=${res.r}`;
+            document.cookie=`user-id=${res.r}; path=/`;
             document.getElementById(popupId).classList.add('popup-settings-hide');
             document.getElementById(popupId).classList.remove('popup-settings-show');
         }
@@ -305,7 +306,7 @@ export function PopupUploadFiles({ id }){
                 </>
                 <>
                     <input type='button' className='pop-4' value='Close' onClick={() => {
-                        document.cookie=`project-id=null`
+                        document.cookie=`project-id=null; path=/`
                         try {
                             document.getElementById(id).classList.add('popup-settings-hide')
                             document.getElementById(id).classList.remove('popup-settings-show')

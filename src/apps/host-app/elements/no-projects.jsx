@@ -1,3 +1,4 @@
+import React from 'react';
 export function NoProjects() {
     return(
         <div className='np-1'>

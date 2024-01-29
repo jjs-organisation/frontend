@@ -1,3 +1,4 @@
+import React from "react";
 import HeaderHostApp from "./header";
 
 export default function LayoutHostApp({ inner }){

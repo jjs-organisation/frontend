@@ -1,7 +1,6 @@
-import React from 'react';
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
-export default function HeaderServices({ inner }) {
+export default function ForumHeader({ text, inner }){
     useEffect(() => {
         window.onwheel = e => {
             if(e.deltaY >= 0){
@@ -20,11 +19,11 @@ export default function HeaderServices({ inner }) {
     return(
         <header id='header-element'>
             <div className="a1">
-                <a href='/'>UniJS Services - IN DEVELOPMENT</a>
+                <a href='/'> { text } </a>
             </div>
             <div className="tl-1">
                 { inner }
             </div>
         </header>
-    )
+    );
 }

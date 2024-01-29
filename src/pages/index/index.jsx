@@ -1,3 +1,4 @@
+import React from 'react';
 export default function Index() {
     return(
         <>
@@ -33,10 +34,10 @@ export default function Index() {
                 <div className="a12">
                     <div className="a18">
                         <div className="a22">
-                            Find service you need in UniJS
+                            Dev webMap
                         </div>
                         <div className="a19">
-                            <input type="button" className="but tb-1" style={{ color: 'black' }} value="Find"
+                            <input type="button" className="but tb-1" style={{ color: 'black' }} value="More.."
                                    onClick={() => window.location.replace('services/')}/>
                         </div>
                     </div>
@@ -45,17 +46,18 @@ export default function Index() {
                     <div className="a20">
                         <text style={{
                             fontSize: 36
-                        }}>Service list:</text><br />
+                        }}>Pages list:</text><br />
                         <span className='a23'>
-                            HTML Editor <br/>
-                            Hosting <br />
-                            Order development
+                            <a href='/profile'> Profile *requires token* </a> <br/>
+                            <a href='/host-app/index'> Hosting </a> <br />
+                            <a href='/api'> API </a> <br />
+                            <a href='/services'> Services [hosting, htmlEditor]</a>
                         </span>
                     </div>
                 </div>
             </section>
             <footer id="contacts" className='a26'>
-                CONTACTS
+                Contacts
                 <div className='a27'>
                     How to contact us?
                     <div className='a29'>
@@ -118,13 +120,7 @@ export default function Index() {
                     </div>
                 </div>
                 <div className='a28'>
-                    <span className='a25'> About company </span>
-                    <span className='a24'> ИНН - 772461841860 </span>
-                    <span className='a24'> ОГРН - 323774600720773 </span>
-                    <span className='a24'> Ереванская ул., 16, корп. 5, Москва, 115304 </span>
-                    <span className='a24'> 8 (993) 275-55-19 </span>
-                    <span className='a24'> Мы может и не банк, зато на нас санкций нету </span>
-                    <span className='a24'> support@unijs.ru</span>
+                    <span className='a25'> support@unijs </span>
                 </div>
             </footer>
         </>

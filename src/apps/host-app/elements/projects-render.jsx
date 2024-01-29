@@ -1,4 +1,5 @@
-import {getProjects, PopupShowHide, runProject} from "../../../server-api/using";
+import React from 'react';
+import {getProjects, PopupShowHide, runProject, viewProject} from "../../../server-api/using";
 import {useEffect, useState} from "react";
 import { NoProjectsLogged } from "./no-projects";
 
@@ -61,25 +62,30 @@ export function ProjectsRender () {
     const ProjectsList = () => data.map((item, i) => (
         <div className='c-7' key={item.name + '-' + i + '-' + item.id}>
             <div className='c-16'>
+                <input type='checkbox' className='c-18'/>
                 <div className='c-8 c-8-stopped' id='c-8'>
                     {() => stateBox()}
                 </div>
                 <span className='c-9'>
-                {item.name}
-            </span>
+                    {item.name}
+                </span>
             </div>
             <div className='c-17'>
                 <input type='button' className='c-10' value='Upload files' projectId={item.id}
                        onClick={
                            () => {
                                 PopupShowHide('popup4')
-                                document.cookie=`project-id=${item.id}`
+                                document.cookie=`project-id=${item.id}; path=/`
                            }}/>
-                <input type='button' className='c-10' value='Start project' 
-                       onClick={() => runProject(item.id, function (res) {
-                           if (res === true)
-                               console.log('running')
-                       })}/>
+                <input type='button' className='c-10' value={item.type === 'html' ? 'View project' : 'Start project'}
+                       onClick={ item.type === 'html' ? () => {
+                           viewProject(item.id, item.name)
+                       }: () => {
+                           runProject(item.id, function (res) {
+                               if (res === true)
+                                   console.log('running')
+                           })
+                       }}/>
                 <input type='button' className='c-10' value='Delete project'
                        onClick={() => console.log('delete')}/>
             </div>

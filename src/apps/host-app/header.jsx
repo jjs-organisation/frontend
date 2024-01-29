@@ -1,7 +1,23 @@
+import React from 'react';
 import Popup from "./app-pages/popup";
-import {PopupLogIn, PopupPayment, PopupSignUp} from "./elements/popup-elements";
-import {useEffect, useRef, useState} from "react";
-import {createUser, deleteCookie, getCookie, getProjects, getUserData, stringify} from "../../server-api/using";
+import {
+    PopupLogin,
+    PopupVerify,
+    PopupSignUp
+} from "../services/layout";
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react";
+import {
+    createUser,
+    deleteCookie,
+    getCookie,
+    getProjects,
+    getUserData,
+    stringify
+} from "../../server-api/using";
 
 export default function HeaderHostApp() {
     const [UserName, setUserName] = useState([]);
@@ -23,34 +39,33 @@ export default function HeaderHostApp() {
 
     const LoggedIn = () => (
         <>
-            <span className='h-7'> { UserName ? UserName : undefined } </span>
+            <span className='h-7' onClick={
+                () => window.location.replace('/profile')}>
+                { UserName ? UserName : undefined }
+            </span>
             <span onClick={() => {
                 deleteCookie('user-id')
                 window.location.reload();
+            }}  style={{
+                textTransform: 'uppercase'
             }}> Log out </span>
         </>
     )
     const UnLoggedIn = () => (
         <>
-            <span className='h-9' onClick={() => PopupShowHide('popup3')}> Log in </span>
-            <span className='h-9' onClick={() => PopupShowHide('popup2')}> Sign up </span>
+            <span className='h-9 open-popup_login' style={{
+                textTransform: 'uppercase'
+            }}> Log in </span>
+            <span className='h-9 open-popup_signup' style={{
+                textTransform: 'uppercase'
+            }}> Sign up </span>
         </>
     )
-
-    const PopupShowHide = (id) => {
-        if (document.getElementById(id).classList.contains('popup-settings-show')){
-            document.getElementById(id).classList.remove('popup-settings-show')
-            document.getElementById(id).classList.add('popup-settings-hide')
-        }else {
-            document.getElementById(id).classList.remove('popup-settings-hide')
-            document.getElementById(id).classList.add('popup-settings-show')
-        }
-    }
 
     return(
         <>
             <div className='h-header'>
-                <div className='h-2'> Hosting </div>
+                <div className='h-2'> UNIJS hosting - in development </div>
                 <div className='h-3'>
                     <div className='h-5'>
                         <label htmlFor='button-headerhostapp'>
@@ -59,10 +74,7 @@ export default function HeaderHostApp() {
                             } </span>
                         </label>
                         <input type='button' name='button-headerhostapp' className='h-4' value='balance +'
-                               onClick={() => PopupShowHide('popup1')}
-                               disabled={
-                                   !getCookie('user-id') ? true : false
-                               }
+                               disabled={!getCookie('user-id')}
                         />
                     </div>
                     <div className='h-7'>
@@ -70,15 +82,9 @@ export default function HeaderHostApp() {
                     </div>
                 </div>
             </div>
-            <Popup id={'popup1'} popupPart={
-                <PopupPayment id={'popup1'}/>
-            }/>
-            <Popup id={'popup2'} popupPart={
-                <PopupSignUp id={'popup2'} />
-            }/>
-            <Popup id={'popup3'} popupPart={
-                <PopupLogIn id={'popup3'}/>
-            }/>
+            <PopupLogin  />
+            <PopupSignUp />
+            <PopupVerify />
         </>
     )
 }

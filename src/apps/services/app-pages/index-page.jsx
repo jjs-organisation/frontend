@@ -1,10 +1,11 @@
+import React from 'react';
 export default function IndexPage(){
     return(
         <>
             <div className='s-6'>
                 <div className='s-7'>
                     <div className='s-13'>
-                        <span className='s-9'> Find service for your ideas </span>
+                        <span className='s-9'> Browse all... </span>
                     </div>
                     <div className='s-8'>
                         <div className='s-10' desc='element of collection'>
@@ -14,6 +15,13 @@ export default function IndexPage(){
                             <div className='s-11'>
                                 <span className='s-11-span'>Learn more...</span>
                                 <div className='s-11-service-order' id='s-11-service-order'>
+                                    <div className='s-11-prewidget'>
+                                        <span className='s-11-prewidget-span'> Hosting for your projects with
+                                            friendly-use Api on NodeJS
+                                        </span>
+                                        <br />
+                                        <span className='s-11-prewidget-span-desc'> Some description </span>
+                                    </div>
                                     <div className='s-11-widget'>
                                         <span className='s-11-widget-span'>
                                             Move to service
@@ -37,6 +45,11 @@ export default function IndexPage(){
                             <div className='s-11'>
                                 <span className='s-11-span'>Learn more...</span>
                                 <div className='s-11-service-order' id='s-11-service-order'>
+                                    <div className='s-11-prewidget'>
+                                        <span className='s-11-prewidget-span'> HTML Editor in web for your any idea</span>
+                                        <br />
+                                        <span className='s-11-prewidget-span-desc'> Some description </span>
+                                    </div>
                                     <div className='s-11-widget'>
                                         <span className='s-11-widget-span'>
                                             Move to service
@@ -60,6 +73,11 @@ export default function IndexPage(){
                             <div className='s-11'>
                                 <span className='s-11-span'>Learn more...</span>
                                 <div className='s-11-service-order' id='s-11-service-order'>
+                                    <div className='s-11-prewidget'>
+                                        <span className='s-11-prewidget-span'> Order your own project </span>
+                                        <br />
+                                        <span className='s-11-prewidget-span-desc'> Some description </span>
+                                    </div>
                                     <div className='s-11-widget'>
                                         <span className='s-11-widget-span'>
                                             Move to service

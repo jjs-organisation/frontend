@@ -1,3 +1,4 @@
+import React from 'react';
 import {useEffect} from "react";
 import cursor1 from '../../static/cursor1.png';
 
@@ -30,7 +31,7 @@ export default function Hosting(){
     return(
         <>
             <div className='b1'>
-                <span className='b2'> Use our hosting for your project! </span>
+                <span className='b2'> User API </span>
                 <span className='b3'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </span>
@@ -56,25 +57,25 @@ export default function Hosting(){
                     <div className='b18'>
                         <div className='b14' id='el-1'>
                             <div className='b20' id='el-a-1'>
-                                <span className='b19'> APITEXT1 </span>
+                                <span className='b19'> Profile info </span>
                                 <span className='b21'>  Simple API for node,js </span>
                             </div>
                         </div>
                         <div className='b15' id='el-2'>
                             <div className='b20' id='el-a-2'>
-                                <span className='b19'> APITEXT2 </span>
+                                <span className='b19'> Editor </span>
                                 <span className='b21'>  Simple API for node,js </span>
                             </div>
                         </div>
                         <div className='b16' id='el-3'>
                             <div className='b20' id='el-a-3'>
-                                <span className='b19'>  APITEXT3 </span>
+                                <span className='b19'>  Hosting </span>
                                 <span className='b21'>  Simple API for node,js </span>
                             </div>
                         </div>
                         <div className='b17' id='el-4'>
                             <div className='b20' id='el-a-4'>
-                                <span className='b19'> APITEXT4 </span>
+                                <span className='b19'> TelegramJS </span>
                                 <span className='b21'>  Simple API for node,js </span>
                             </div>
                         </div>
@@ -95,17 +96,12 @@ export default function Hosting(){
             </div>
             <div className='b26'>
                 <span className='b27'>
-                    Use app right now
+                    Start integration
                 </span>
                 <div className='b28'>
-                    <a href='/host-app/index' style={{ color: 'white' }}> To app </a>
+                    <a href='/userapi/' style={{ color: 'white' }}> To app </a>
                 </div>
             </div>
-            <footer className='b29'>
-                <a className='b31' href='/'>
-                    To main page
-                </a>
-            </footer>
             <div className='b30'>
                 support@unijs.ru
             </div>
