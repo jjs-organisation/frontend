@@ -1,12 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type EditorTheme = 'light' | 'dark';
+export type EditorTheme = 'light'; // light
 
 export interface IState {
     html: string;
     css: string;
     javascript: string;
-    theme: EditorTheme;
 }
 
 export interface editorState {

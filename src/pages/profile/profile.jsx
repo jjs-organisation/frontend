@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from "./layout";
-import OwnProfile from "./own/own_profile";
-export default function Profile({ Head }) {
+import ProfileRender from "./own/own_profile";
+export default function Profile({ Head, userId }) {
     return(
         <>
             <Layout inner={
-                <OwnProfile />
+                <ProfileRender user_id={userId} />
             } Head={ Head }/>
         </>
     )

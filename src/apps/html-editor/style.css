@@ -39,12 +39,9 @@ iframe#webpack-dev-server-client-overlay{display:none!important}
 
 .open-popup {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 15px 10px;
     text-transform: uppercase;
-    background: #2982ff;
-    color: #fff;
     text-decoration: none;
-    font-weight: 500;
     border-radius: 5px;
 }
 

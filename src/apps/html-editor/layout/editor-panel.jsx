@@ -1,5 +1,6 @@
 import React from "react";
 import MEditor from '@monaco-editor/react';
+import { getCookie } from "../../../server-api/using";
 import { useContext } from 'react';
 import { editorOptions } from '../config.ts';
 import { Context } from '../context.ts';
@@ -62,7 +63,9 @@ export const EditorPanel = () => {
                 >
                     <MEditor
                         options={editorOptions}
-                        theme={state.theme === 'dark' ? 'vs-dark' : state.theme}
+                        theme={!getCookie('editor-theme')
+                            ?'vs-dark'
+                            :getCookie('editor-theme')}
                         height="100%"
                         defaultLanguage="html"
                         value={state.html}
@@ -83,7 +86,9 @@ export const EditorPanel = () => {
                 >
                     <MEditor
                         options={editorOptions}
-                        theme={state.theme === 'dark' ? 'vs-dark' : state.theme}
+                        theme={!getCookie('editor-theme')
+                            ?'vs-dark'
+                            :getCookie('editor-theme')}
                         height="100%"
                         defaultLanguage="css"
                         value={state.css}
@@ -104,7 +109,9 @@ export const EditorPanel = () => {
                 >
                     <MEditor
                         options={editorOptions}
-                        theme={state.theme === 'dark' ? 'vs-dark' : state.theme}
+                        theme={!getCookie('editor-theme')
+                            ?'vs-dark'
+                            :getCookie('editor-theme')}
                         height="100%"
                         defaultLanguage="javascript"
                         value={state.javascript}

@@ -15,12 +15,16 @@ import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {getCookie} from "../../server-api/using";
+import {
+    PopupLogin,
+    PopupSignUp,
+    PopupVerify
+} from "../services/layout";
 
 const initialState: IState = {
     html: htmlDefaultTemplate2,
     css: cssDefaultTemplate2,
     javascript: jsDefaultTemplate,
-    theme: 'dark',
 };
 
 const projectInitial: editorState = {
@@ -30,9 +34,43 @@ const projectInitial: editorState = {
 }
 
 const headerElements = () => (
-    <>
-        <a href="/">to main page</a>
-    </>
+    <div className='e-1'>
+        {
+            !getCookie('user-id')
+                ?   <>
+                        <span className='e-2'> Sandbox </span>
+                        <span className='h-9 open-popup_login h-9-editor' style={{
+                            textTransform: 'uppercase'
+                        }}> Log in </span>
+                        <span className='h-9 open-popup_signup h-9-editor' style={{
+                            textTransform: 'uppercase'
+                        }}> Sign up </span>
+                    </>
+                :   <>
+                        <input className='open-popup open-popup_create e-3' type="button" value='New project'
+                               disabled={!getCookie('user-id')}
+                        />
+                        <input className='open-popup open-popup_save e-3' type="button" value='Save project'
+                               disabled={!getCookie('project-id')}
+                        />
+                        <input className='open-popup open-popup_load e-3' type="button" value='Load project'
+                               disabled={!getCookie('user-id')}
+                        />
+                        <input className='open-popup open-popup_plugins e-3' type="button" value='Plugins'
+                               disabled={!getCookie('user-id')}
+                        />
+                        <input className='open-popup open-popup_esettings e-3' type="button" value='Settings'
+                               disabled={!getCookie('user-id')}
+                        />
+                        {
+                            !getCookie('project-id')
+                                ? <span className='e-2'> Untiled project </span>
+                                : <span className='e-2'> { getCookie('project-name') } </span>
+                        }
+                    </>
+        }
+        {/*<a href="/">to main page</a>*/}
+    </div>
 )
 
 function Editor() {
@@ -45,26 +83,7 @@ function Editor() {
     return (
         <>
             <div className="App">
-                {/*
-                    <EditorHeader inner={headerElements} />
-                    def header
-                */}
-                <div className='e-1'>
-                    {
-                        !getCookie('project-id')
-                            ? <span className='e-2'> Untiled project </span>
-                            : <span className='e-2'> { getCookie('project-name') } </span>
-                    }
-                    <input className='open-popup open-popup_create e-3' type="button" value='New project'
-                        disabled={!getCookie('user-id')}
-                    />
-                    <input className='open-popup open-popup_save e-3' type="button" value='Save this project'
-                        disabled={!getCookie('project-id')}
-                    />
-                    <input className='open-popup open-popup_load e-3' type="button" value='Load project'
-                        disabled={!getCookie('user-id')}
-                    />
-                </div>
+                <EditorHeader Inner={headerElements} />
                 <main className='editor-main'>
                     <Context.Provider value={{ state, dispatch }}>
                         <Layout />
@@ -72,6 +91,9 @@ function Editor() {
                 </main>
             </div>
             <PopupLibrary />
+            <PopupLogin  />
+            <PopupSignUp />
+            <PopupVerify />
         </>
     );
 }

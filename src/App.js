@@ -14,6 +14,7 @@ import Profile from "./pages/profile/profile";
 import View from "./apps/html-viewer/view";
 import Indexapi_ from "./pages/api_page/indexapi_";
 import ForumRouting from "./apps/forum/forum-routing";
+import ProfileRouting from "./pages/profile/profile_router";
 
 function useQuery() {
     const { search } = useLocation();
@@ -24,7 +25,7 @@ function App() {
 
   const  IndexHeader = () => (
       <>
-          <a href="/dev"> development </a>
+          <a href="/editor"> editor </a>
           <a href="/api">api</a>
           <a href="#pricing">pricing</a>
           <a href="#contacts">contacts</a>
@@ -41,13 +42,6 @@ function App() {
   const NotFoundHeader = () => (
       <>
           <a href="/"> to main </a>
-      </>
-  )
-
-  const ProfileHeader = () => (
-      <>
-          <a href="/"> to main </a>
-          <a href="/services/"> to services </a>
       </>
   )
 
@@ -69,8 +63,8 @@ function App() {
                   <View project_id={query.get("content")} project_name={query.get("name")}/>
               }>
               </Route>
-              <Route exact path='/profile' element={
-                  <Profile Head={<ProfileHeader/>}/>
+              <Route exact path='/profile/*' element={
+                  <ProfileRouting />
               }>
               </Route>
               <Route path='/forum/*' element={<ForumRouting />} />

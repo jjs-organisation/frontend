@@ -26,6 +26,26 @@ const config = {
                 get_balance: `${backend_uri}billing/getbalance`
             }
         },
+        forum:{
+            get_themes : `${backend_uri}forum/getallthemes`,
+            create_post: `${backend_uri}forum/createpost`,
+            get_posts_by_theme: `${backend_uri}forum/gettheme`,
+            get_post: `${backend_uri}forum/getpost`,
+            get_user_posts: `${backend_uri}forum/getuserposts`,
+            response_post: `${backend_uri}forum/postresponse`,
+            get_response_posts: `${backend_uri}forum/getresponseposts`
+        },
+        plugins: {
+            get_all: `${backend_uri}plugins/getall`,
+            get_info: `${backend_uri}plugins/getinfo`,
+            get_installed: `${backend_uri}plugins/getinstalled`,
+            install_plugin: `${backend_uri}plugins/installplugin`,
+            delete_all: `${backend_uri}plugins/deleteall`,
+            blob: {
+                get_image: `${backend_uri}plugins/getimg`,
+                get_plugin: `${backend_uri}plugins/getplugin`
+            }
+        },
         posts:{
             create_post: `${backend_uri}posts/create`,
             get_posts: `${backend_uri}posts/get`
@@ -74,6 +94,51 @@ async function Connect(uri, body, callback) {
         }
     };
 }
+async function ConnectBlob(uri, body, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('post', uri, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'blob';
+    xhr.send(stringify(body))
+    xhr.onload = async () => {
+        if (xhr.status !== 200) {
+            console.log(`some error caught when tries call ${uri} \n with body: \n ${body}`)
+        } else {
+            await callback(xhr.response)
+        }
+    };
+}
+
+async function ConnectGET(uri, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', uri, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+    xhr.send()
+    xhr.onload = async () => {
+        if (xhr.status !== 200) {
+            console.log(`some error caught when tries call ${uri} \n with body: \n ${body}`)
+        } else {
+            await callback(xhr.response)
+        }
+    };
+}
+
+async function ConnectGETImg(uri, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', uri);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'blob';
+    xhr.send()
+    xhr.onload = async () => {
+        if (xhr.status !== 200) {
+            console.log(`some error caught when tries call ${uri} \n with body: \n ${body}`)
+        } else {
+            await callback(xhr.response)
+        }
+    };
+}
+
 
 export async function createUser(data, verify) {
     await Connect(config.api.users_api.create_user, {
@@ -160,6 +225,18 @@ export async function getProjects(callback) {
     }else {
         await Connect(config.api.projects_api.get_projects,{
             ownerid: getCookie('user-id'),
+        }, function (result) {
+            callback(result)
+        })
+    }
+}
+
+export async function getProjectsById(user_id, callback){
+    if (!getCookie('user-id')){
+        console.log('no user-id in cookie')
+    }else {
+        await Connect(config.api.projects_api.get_projects,{
+            ownerid: user_id,
         }, function (result) {
             callback(result)
         })
@@ -269,7 +346,7 @@ export async function getProfileInfo(user_id, callback){
     await Connect(config.api.users_api.get_profile_data, {
         user_id: user_id
     }, function (result) {
-        callback(result)
+        callback(JSON.parse(result.r)[0])
     })
 }
 
@@ -280,6 +357,7 @@ export async function getProfileInfo(user_id, callback){
 export async function createPost(title,content) {
     await Connect(config.api.posts.create_post, {
         user_id: getCookie('user-id'),
+        user_name: getCookie('user-name'),
         title: title,
         content: content
     }, function (result) {
@@ -296,6 +374,76 @@ export async function getPosts(callback) {
     })
 }
 
+export async function getPostsById(profile_id, callback) {
+    await Connect(config.api.posts.get_posts, {
+        user_id: profile_id
+    }, function (res) {
+        callback(res)
+    })
+}
+
+/** Forum */
+
+export async function getThemes(callback) {
+    await ConnectGET(config.api.forum.get_themes, function (res) {
+        callback(res)
+    })
+}
+
+export async function forumCreatePost(title, theme, content, responseId){
+    await Connect(config.api.forum.create_post, {
+        user_id: getCookie('user-id'),
+        user_name: getCookie('user-name'),
+        title: title,
+        theme: theme,
+        content: content,
+        response_id: responseId
+    },function (res) {
+        //..
+    })
+}
+
+export async function forumGetThemePosts(query, callback){
+    await Connect(config.api.forum.get_posts_by_theme, {
+        themeId: query
+    },function (res) {
+        callback(res)
+    })
+}
+
+export async function forumGetPostById(post_id, callback) {
+    await Connect(config.api.forum.get_post, {
+        post_id: post_id
+    },function (res) {
+        callback(res)
+    })
+}
+
+export async function forumGetUserPosts(user_id, callback){
+    await Connect(config.api.forum.get_user_posts, {
+        user_id: user_id
+    },function (res) {
+        callback(res)
+    })
+}
+
+export async function forumResponsePost(post_id, callback){
+    await Connect(config.api.forum.response_post, {
+        post_id: post_id,
+        user_id: getCookie('user-id')
+    },function (res) {
+        callback(res)
+    })
+}
+
+export async function forumGetResponsePosts(post_id, callback){
+    await Connect(config.api.forum.get_response_posts,{
+        response_id: post_id
+    },function (res) {
+        callback(res)
+    })
+}
+
 /** Settings */
 
 export async function setSettings(sessionLifetime, new_userName, callback){
@@ -306,4 +454,91 @@ export async function setSettings(sessionLifetime, new_userName, callback){
     }, function (res) {
         callback(res)
     })
+}
+
+export async function CleanUpCache() {
+    localStorage.clear();
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+    window.location.reload();
+}
+
+/** Plugins */
+
+export async function getAllPlugins(callback){
+    await ConnectGET(config.api.plugins.get_all, function (res) {
+        callback(res)
+    })
+}
+export function getPluginImage(data, callback){
+    ConnectBlob(config.api.plugins.blob.get_image, {
+        path: data},function (res) {
+        callback(res)
+    })
+}
+
+export function getPluginCode(data, callback){
+    ConnectBlob(config.api.plugins.blob.get_plugin, {
+        path: data
+    }, function (res) {
+        callback(res)
+    })
+}
+export async function getInfoAboutPlugin(data, callback) {
+    ConnectBlob(config.api.plugins.blob.get_image, {
+        path: data
+    },function (res) {
+        Connect(config.api.plugins.get_info, {
+            path: data
+        }, function (re) {
+            console.log({
+                icon: res,
+                id: re[0].id,
+                caption: re[0].name,
+                text: re[0].description,
+                ver: re[0].version
+            })
+            callback({
+                icon: res,
+                id: re[0].id,
+                caption: re[0].name,
+                text: re[0].description,
+                ver: re[0].version
+            })
+        })
+    })
+}
+export async function getInstalledPlugins(callback) {
+    !getCookie('user-id')
+        ? callback(false)
+        : await Connect(config.api.plugins.get_installed, {
+            user_id: getCookie('user-id')
+        } ,function (res) {
+            callback(res)
+        })
+}
+export async function installPlugin(pluginId , callback){
+    !getCookie('user-id')
+        ? callback(false)
+        : await Connect(config.api.plugins.install_plugin, {
+            user_id: getCookie('user-id'),
+            plugin_id: pluginId
+        }, function (res) {
+            callback(res)
+        })
+}
+export async function DeleteAllPlugins(){
+    !getCookie('user-id')
+        ? console.error('not logged in')
+            : await Connect(config.api.plugins.delete_all, {
+                user_id: getCookie('user-id')
+            },function (res) {
+                console.log('deleted')
+            })
 }
