@@ -1,0 +1,6 @@
+background : white;
+mainColor: rgb(29 0 255 / 77%);
+gradient: rgba(255, 9, 245, 1) 100%);
+font: black || white;
+fontHover(white): #9b04ff;
+fontHover(main):#c1c1c1;

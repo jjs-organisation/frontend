@@ -3,19 +3,28 @@ import React, {
     useState
 } from 'react';
 import {
-    getAllPlugins, getInfoAboutPlugin,
+    deletePlugin,
+    getAllPlugins,
+    getInfoAboutPlugin,
+    getInstalledPlugins,
     getPluginCode,
-    getPluginImage, installPlugin
+    getPluginImage,
+    installPlugin
 } from "../../../server-api/using";
 import GetAllPopups_PluginsServices from "./popups-module";
 
 export default function IndexPage(){
-    const [plugins, setPlugins] = useState([]);
+    const [plugins, setPlugins] = useState([]),
+        [installedPlugins, setInstalledPlugins] = useState([]),
+        [isInstalled, setIsInstalled] = useState(false)
 
     useEffect(() => {
         const DataFetch = async () => {
             await getAllPlugins(function (result) {
                 setPlugins(result)
+            })
+            await getInstalledPlugins(function (res) {
+                setInstalledPlugins(res)
             })
         }
         DataFetch()
@@ -41,16 +50,45 @@ export default function IndexPage(){
                  popup = document.querySelector('.popup_plugin-about');
              let parsed_icon = URL.createObjectURL(res.icon)
 
+
+             console.log(installedPlugins)
+             console.log(res.id)
+
+             for(let element of installedPlugins){
+                if (element.id === res.id){
+                    setIsInstalled(true)
+                    break;
+                }
+             }
+
+             console.log(isInstalled)
+
              icon.setAttribute('style', `background-image: url(\'${parsed_icon}\');
              background-position: center top; background-size: contain; min-height: 446px;`);
              desc.innerHTML = ''; desc.innerHTML = res.text;
              ver.innerHTML = ''; ver.innerHTML = res.ver;
              capt.innerHTML = ''; capt.innerHTML = res.caption;
-             button.addEventListener('click', () => {
-                 installPlugin(res.id)
-             })
+             button.innerHTML = '';
 
+             isInstalled === true
+                ? button.innerHTML = 'remove'
+                : button.innerHTML = 'Install'
 
+             isInstalled === true
+                ? button.addEventListener('click',  () => {
+                     button.innerHTML = 'Install'
+                     deletePlugin(res.id)
+                     getInstalledPlugins(function (res) {
+                         setInstalledPlugins(res)
+                     })
+                })
+                : button.addEventListener('click', () => {
+                    button.innerHTML = 'remove'
+                    installPlugin(res.id)
+                    getInstalledPlugins(function (res) {
+                        setInstalledPlugins(res)
+                    })
+                })
              popupBg.classList.add('active');
              popup.classList.add('active')
         })
@@ -58,8 +96,8 @@ export default function IndexPage(){
 
     const PluginsElement = () => plugins.map((v, i) => (
         <>
-            {getImage(v.path)}
-            <div className='s4' desc='card' key={v.name + '_' + v.version}>
+            { getImage(v.path) }
+            <div className={ i === 0 ? 's4 s4-first-element' : 's4' } desc='card' key={v.name + '_' + v.version}>
                 <div className='s4-card-img' id={v.path}> </div>
                 <span className='s4-card-caption'>{v.name}</span>
                 <br/>
@@ -88,9 +126,7 @@ export default function IndexPage(){
                     </span>
                 </div>
                 <div className='s3'>
-                    {/*<div className='s5'>*/}
                     { <PluginsElement /> }
-                    {/** Plugin startup (working) */}
                 </div>
             </div>
             <GetAllPopups_PluginsServices />

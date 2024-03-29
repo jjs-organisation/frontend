@@ -101,6 +101,36 @@ export default function Index() {
                     </div>
                 </div>
             </section>
+            <section className='a38'>
+                <div className='a38-1'>
+                    <span className='a38-title'>
+                        Subscribe our team
+                    </span>
+                    <br/>
+                    <p className='a38-desc'>
+                        Get our news in your email service
+                    </p>
+                </div>
+                <div className='a38-2'>
+                    <div className='a39'> Your mail address </div>
+                    <div className='a41'>
+                        <input type='text' className='a40' placeholder='email' id='735347268984-textbox' onChange={() => {
+                            document.getElementById('735347268984-textbox').classList.remove('a40-bad-result')
+                            document.getElementById('735347268984-textbox-wrong-result')
+                                .innerHTML = ''
+                        }}/>
+                        {/*TODO: create sendMail(to backend) function*/}
+                        <span id='735347268984-textbox-wrong-result' style={{ color: "red" }}> </span>
+                        <input type='button' className='a42' value='send' onClick={() => {
+                            if (!document.getElementById('735347268984-textbox').value){
+                                document.getElementById('735347268984-textbox').classList.add('a40-bad-result')
+                                document.getElementById('735347268984-textbox-wrong-result')
+                                    .innerHTML = 'Value cant be empty'
+                            }
+                        }}/>
+                    </div>
+                </div>
+            </section>
             <footer id="contacts" className='a26'>
                 <div className='footer'>
                     <div className='footer-background'>

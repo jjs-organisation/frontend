@@ -41,6 +41,7 @@ const config = {
             get_installed: `${backend_uri}plugins/getinstalled`,
             install_plugin: `${backend_uri}plugins/installplugin`,
             delete_all: `${backend_uri}plugins/deleteall`,
+            delete_plugin: `${backend_uri}plugins/deleteplugin`,
             blob: {
                 get_image: `${backend_uri}plugins/getimg`,
                 get_plugin: `${backend_uri}plugins/getplugin`
@@ -531,6 +532,19 @@ export async function installPlugin(pluginId , callback){
             plugin_id: pluginId
         }, function (res) {
             callback(res)
+        })
+}
+export async function deletePlugin(pluginId) {
+    !getCookie('user-id')
+        ? console.log(false)
+        : await Connect(config.api.plugins.delete_plugin, {
+            plugin_id: pluginId,
+            user_id: getCookie('user-id')
+        },function (res) {
+            if (res === true)
+                console.log(true)
+            else
+                console.log(false)
         })
 }
 export async function DeleteAllPlugins(){
