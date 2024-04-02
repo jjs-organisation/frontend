@@ -3,6 +3,12 @@ let backend_uri = `http://localhost:3450/` // || 95.163.233.114
 // https://localhost:3451/ -- HTTPS!!! 3451
 
 const config = {
+    newapi: {
+        projects:{
+            getfiles : `${backend_uri}newapi/projects/getprojectfiles`,
+            getdata: `${backend_uri}newapi/projects/getprojectdata`
+        }
+    },
     api:{
         users_api: {
             create_user: `${backend_uri}users/create`,
@@ -555,4 +561,20 @@ export async function DeleteAllPlugins(){
             },function (res) {
                 console.log('deleted')
             })
+}
+export async function getProjectFiles(callback){
+    await Connect(config.newapi.projects.getfiles, {
+        project_id: '8pDZVY3VQklcF2YJJwV84IUAgFMGhyBNZqZ',
+        user_id: 'AcimjXxyScyFlAFA2Ep0'
+    },function (res) {
+        callback(res)
+    })
+}
+export async function getProjectData(callback){
+    await Connect(config.newapi.projects.getdata, {
+        project_id: '8pDZVY3VQklcF2YJJwV84IUAgFMGhyBNZqZ',
+        user_id: 'AcimjXxyScyFlAFA2Ep0'
+    },function (res) {
+        callback(res.result)
+    })
 }

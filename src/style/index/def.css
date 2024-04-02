@@ -15,7 +15,12 @@
 *:before {
     box-sizing: border-box;
 }
-
+:focus-visible{
+    outline: 0;
+}
+input{
+    outline: 0!important;
+}
 /*
 breakpoints: 745px
 400px
@@ -2226,7 +2231,7 @@ button, input, a {
     width: auto;
     height: 35px;
     border: 1px solid black;
-    background-color: #d100ff;
+    background-color: #0075ff;;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2257,6 +2262,8 @@ button, input, a {
 .z-1-upper-panel-title{
     z-index: 99;
     font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 .z-3{
     color: white !important;
@@ -2336,4 +2343,212 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+/* popup */
+.popup__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s all;
+    z-index: 5;
+}
+
+.popup__bg.active {
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.5s all;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #fff;
+    width: 290px;
+    padding: 25px;
+    transition: 0.5s all;
+}
+
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0.5s all;
+}
+
+/* styling */
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popup label {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.popup .label__text {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #cfd0d3;
+    margin-bottom: 5px;
+}
+
+.popup input {
+    height: 45px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #cfd0d3;
+}
+
+.popup input:focus {
+    border-bottom: 1px solid rgba(128, 255, 0, 0.7);
+}
+
+.popup input:focus + .label__text {
+    color: rgba(128, 255, 0, 0.7);
+}
+
+.popup textarea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #cfd0d3;
+    font-size: 18px;
+    padding-top: 5px;
+}
+
+.popup textarea:focus {
+    border-bottom: 1px solid rgba(128, 255, 0, 0.7);
+}
+
+.popup textarea:focus + .label__text {
+    color: rgba(128, 255, 0, 0.7);
+}
+
+.popup button {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 18px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.5s all;
+}
+
+.popup button:hover {
+    background: #fff;
+    color: rgba(128, 255, 0, 0.7);;
+    transition: 0.5s all;
+}
+.close-popup__login{
+    font-size: 32px;
+}
+.popup__wrong{
+    border-bottom: 1px solid rgba(255, 0, 0, 0.7) !important;
+}
+.app-gamepanel-button:focus{
+    color: white;
+    font-weight: 600;
+}
+.popup__dataview_1{
+    width: 100vh;
+}
+/* end_popup */
+/* @mui -- fixes */
+.css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar .MuiTablePagination-actions {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-left: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar .MuiTablePagination-actions {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-left: 60px !important;
+}
+.popup button:hover {
+    background: transparent;
+    transition: 0.5s all;
+    color: black !important;
+}
+/* end_fixes */
+.popup__project_create{
+    width: 30vh;
+}
+.select-white-color{
+    color: white !important;
+}
+.select-white-color option{
+    color: white !important;
+}
+.label__text_2{
+    font-size: 14px !important;
+}
+.popup__project_settings{
+    width: 40vh;
+}
+.t-wrapper{
+    width: auto;
+    height: -webkit-fill-available;
+    display:flex;
+    flex-direction:column;
+}
+.t-tabs-element{
+    height: -webkit-fill-available;
+}
+.t-tabs-holder{
+    height: 4vh;
+    display: flex;
+    flex-direction: row;
+}
+.t-tab{
+    min-width: 100px;
+    max-width: 250px;
+    font-size: 16px;
+    width: max-content;
+    height: inherit;
+    background: white;
+    margin-right: 5px;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    color: black !important;
+    padding: 5px;
+    cursor: default;
+}
+.t-tab-active{
+    background: #a1a1a1;
+}
+.t-tab-title{
+    font-size: 14px;
+    width:85%
+}
+.t-close-tab{
+    font-size: 16px;
+    cursor: pointer;
+    width:15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
